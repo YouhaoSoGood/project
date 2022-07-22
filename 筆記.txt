@@ -1,0 +1,3 @@
+action="xxx"     >>> xxx是指要傳送到的目的地
+type="submit"    >>> 按鈕 送出form裡面所有input的值
+/*justify-content: space-between; /* 均匀排列每個元素首個元素放置於起点，末尾元素放置於终点 */

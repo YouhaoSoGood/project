@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>報修網站</title>
+    <!-- Theme style -->
+    <link rel="stylesheet" href="/fixall/lib/jqueryui/jquery-ui.min.css">
+    <link rel="stylesheet" href="/fixall/lib/jqueryui/themes/redmond/theme.min.css">
+    <link rel="stylesheet" href="/fixall/lib/bootstrap/dist/css/bootstrap.min.css">
+    <!-- Dialog -->
+    <link rel="stylesheet" href="/fixall/lib/sweetalert2/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="/fixall/lib/toastr/toastr.min.css">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="/fixall/lib/font-awesome/css/all.min.css">
+    <!-- Kendo UI -->
+    <!-- 與上面擇一 -->
+    <link rel="stylesheet" href="/fixall/lib/kendoui/css/kendo.common-bootstrap.min.css">
+    <link rel="stylesheet" href="/fixall/lib/kendoui/css/kendo.bootstrap.min.css">
+    <link rel="stylesheet" href="/fixall/lib/kendoui/css/kendo.blueopal.min.css">
+
+    <!-- Others -->
+    <link rel="stylesheet" href="/fixall/lib/perfectscrollbar/css/perfect-scrollbar.css">
+    <link rel="stylesheet" href="/fixall/lib/icheck-material/icheck-material.min.css">
+    <link rel="stylesheet" href="/fixall/css/site.css">
+    <style>
+        body {
+            font-family: '微軟正黑體', 'Roboto', 'Noto Sans TC', 'Arial', sans-serif;
+        }
+    </style>
+
+
+    <style>
+        #gridMain {
+            font-size: 1.2em;
+            font-family: 標楷體;
+        }
+
+        .k-grid-header .k-header {
+            height: 20px;
+        }
+
+        .k-header .k-link {
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .k-grid tbody tr {
+            line-height: 12px;
+        }
+
+        .k-grid tbody td {
+            padding: 0;
+        }
+
+        .longtext {
+            white-space: nowrap !important;
+            text-overflow: ellipsis !important;
+        }
+
+        .btn-sm {
+            padding-left: 0.25rem !important;
+            padding-right: 0.25rem !important;
+        }
+    </style>
+
+    <script src="/fixall/lib/jquery/jquery.min.js?v=9_aliU8dGd2tb6OSsuzixeV4y_faTqgFtohetphbbj0"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.4.0/jszip.js"></script><!-- grid excel export  -->
+    <script src="/fixall/lib/kendoui/js/kendo.all.min.js?v=qHEw45dHuTD4BRHmfP5XTvuQakF7zxYkSAjftVmk8jM"></script>
+    <script src="/fixall/lib/kendoui/js/kendo.aspnetmvc.min.js?v=9KIZoIgtGSrsGi3ttNBAeRBB3y8SI2CWKI-mqQPZmp8"></script>
+    <script
+        src="/fixall/lib/kendoui/js/messages/kendo.messages.zh-TW.min.js?v=RJmRzoYmlANNYUSTjxzTQPprgGGVtFT5d9yDEwsh-Y8"></script>
+    <script
+        src="/fixall/lib/kendoui/js/cultures/kendo.culture.zh-TW.min.js?v=8pQs7U0g75XuV22zHkWgDFBwLBOqYQK33mYV5zvxcoU"></script>
+</head>
+<!--  -->
+<body style="">
+    <div class="container-fluid" style="display: flex;">
+        <nav class="navbar navbar-light navbar-expand-lg sticky-top shadow border-info mb-2"
+            style="background-color: #e3f2fd;  display: flex;  width: 100%;">
+            <img class="mr-auto" alt="logo" src="https://www.nkust.edu.tw/var/file/0/1000/img/513/176957439.png"
+                width="60" >
+            <a class="navbar-brand" style="font-weight:bolder" href="#">維修申請系統</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent"  style="display: flex; justify-content: space-between; width: 100%;">
+
+                <div class="navbar-nav mr-auto mt-2 mt-lg-0" style="font-weight:bold; display: flex;" >
+                    <p class="nav-item"><a href="javascript:void()" class="nav-link">版本 4.0.2</a></p>
+                    <p class="nav-item"><a href="javascript:void()" class="nav-link text-danger">畫面如異常，請按Ctrl+F5</a>
+                    </p>
+                </div>
+                <div class="ml-auto" >
+                    <a href="/fixall/Account/Logout" role="button" class="btn btn-primary  my-2 my-sm-0 "><i
+                            class="fas fa-sign-out-alt" >登出</i></a><br>
+                </div>
+
+            </div>
+        </nav>
+    </div>
+
+    <div id="main-content" class="container-fluid">
+        <!-- 查詢 Panel-->
+        <div class="card  card-info border-info">
+            <div class="card-body ">
+                <h3 class="card-title text-center border-top border-bottom border-info">查詢條件</h3>
+                <form id="queryForm" novalidate="novalidate">
+                    <div class="row  form-inline k-form-inline mx-auto p-0" style="font-size:1.1em;">
+                        <span class="label label-primary" style="font-size:1em">查詢日期：</span>
+                        <span style="width: 160px; font-family: arial;"
+                            class="k-datepicker k-input k-input-solid k-input-md k-rounded-md"><input
+                                style="width:160px; font-family:arial;" data-val="true"
+                                data-val-required="The BeginDate field is required." id="BeginDate" name="BeginDate"
+                                type="text" value="2022/04/22" data-role="datepicker" class="k-input-inner"
+                                role="combobox" aria-expanded="false" aria-haspopup="grid"
+                                aria-owns="BeginDate_dateview" autocomplete="off" aria-disabled="false"
+                                aria-readonly="false"><button aria-label="select" tabindex="-1"
+                                class="k-input-button k-button k-icon-button k-button-md k-button-solid k-button-solid-base"
+                                type="button" role="button" aria-controls="BeginDate_dateview"><span
+                                    class="k-icon k-i-calendar k-button-icon"></span></button></span>
+                        <script>kendo.syncReady(function () { jQuery("#BeginDate").kendoDatePicker({ "format": "yyyy/MM/dd", "value": new Date(2022, 3, 22, 23, 29, 4, 112) }); });</script>
+                        到
+                        <span class="k-datepicker k-input k-input-solid k-input-md k-rounded-md"
+                            style="width: 160px; font-family: arial;"><input style="width:160px; font-family:arial;"
+                                data-val="true" data-val-required="The EndDate field is required." id="EndDate"
+                                name="EndDate" type="text" value="2022/04/29" data-role="datepicker"
+                                class="k-input-inner" role="combobox" aria-expanded="false" aria-haspopup="grid"
+                                aria-owns="EndDate_dateview" autocomplete="off" aria-disabled="false"
+                                aria-readonly="false"><button aria-label="select" tabindex="-1"
+                                class="k-input-button k-button k-icon-button k-button-md k-button-solid k-button-solid-base"
+                                type="button" role="button" aria-controls="EndDate_dateview"><span
+                                    class="k-icon k-i-calendar k-button-icon"></span></button></span>
+                        <script>kendo.syncReady(function () { jQuery("#EndDate").kendoDatePicker({ "format": "yyyy/MM/dd", "value": new Date(2022, 3, 29, 23, 29, 4, 112) }); });</script>
+                        <span class="label label-primary " style="font-size:1em">辦理情形：</span>
+                        <span title="" class="k-picker k-dropdown k-widget k-picker-solid k-picker-md k-rounded-md"
+                            unselectable="on" role="listbox" aria-haspopup="listbox" aria-expanded="false" tabindex="0"
+                            aria-owns="Process_listbox" aria-controls="Process_listbox" aria-live="polite"
+                            aria-disabled="false" aria-readonly="false" aria-busy="false" style="width: 200px;"
+                            aria-activedescendant="d4d43259-ecec-4d07-a66f-6a68a738087b"><span
+                                id="d4d43259-ecec-4d07-a66f-6a68a738087b" unselectable="on" role="option"
+                                aria-selected="true" class="k-input-inner"><span
+                                    class="k-input-value-text">未列印</span></span><button type="button" tabindex="-1"
+                                unselectable="on"
+                                class="k-select k-input-button k-button k-button-md k-button-solid k-button-solid-base k-icon-button"
+                                aria-label="select"><span
+                                    class="k-icon k-i-arrow-s k-button-icon"></span></button><select
+                                style="width: 200px; display: none;" id="Process" name="Process"
+                                data-role="dropdownlist">
+                                <option value="N" selected="selected">未列印</option>
+                                <option value="P">已列印(辦理中)</option>
+                                <option value="S">完工</option>
+                                <option value="L">無法立即完工</option>
+                                <option value="A">全部</option>
+                            </select></span>
+                        <span class="label label-primary" style="font-size:1em">申請類別：</span>
+                        <span title="" class="k-picker k-dropdown k-widget k-picker-solid k-picker-md k-rounded-md"
+                            unselectable="on" role="listbox" aria-haspopup="listbox" aria-expanded="false" tabindex="0"
+                            aria-owns="QueryClass_listbox" aria-controls="QueryClass_listbox" aria-live="polite"
+                            aria-disabled="false" aria-readonly="false" style="width: 150px; font-size: 0.9em;"
+                            aria-busy="false" aria-activedescendant="f6f5dc80-70dc-465f-b5f2-3ac561ff6375"><span
+                                id="f6f5dc80-70dc-465f-b5f2-3ac561ff6375" unselectable="on" role="option"
+                                aria-selected="true" class="k-input-inner"><span
+                                    class="k-input-value-text">全部</span></span><button type="button" tabindex="-1"
+                                unselectable="on"
+                                class="k-select k-input-button k-button k-button-md k-button-solid k-button-solid-base k-icon-button"
+                                aria-label="select"><span
+                                    class="k-icon k-i-arrow-s k-button-icon"></span></button><input
+                                style="width: 150px; font-size: 0.9em; display: none;" id="QueryClass" name="QueryClass"
+                                type="text" value="" data-role="dropdownlist"></span>
+                        <script>kendo.syncReady(function () { jQuery("#QueryClass").kendoDropDownList({ "dataSource": { "serverAggregates": true, "serverFiltering": false, "serverGrouping": true, "serverSorting": true, "transport": { "read": { "url": "/fixall/Ajax/GetFixClassByOwner/?fgShowAll=True&fgEnable=True&fgShowCode=False" } }, "type": (function () { if (kendo.data.transports['aspnetmvc-ajax']) { return 'aspnetmvc-ajax'; } else { throw new Error('The kendo.aspnetmvc.min.js script is not included.'); } })() }, "height": 340, "minLength": 2, "optionLabel": "全部", "dataTextField": "Text", "dataValueField": "Value" }); });</script>
+                        <span class="label label-primary" style="font-size:1em">申請序號：</span>
+                        <input type="text" class="form-control" title="如果這理有值，其他的條件就不處理" id="FixNo" name="FixNo"
+                            value="">
+                        &nbsp;
+                        <button id="btnQuery" class="btn btn-primary"><i class="fas fa-search">查詢</i></button>
+                        &nbsp;
+                        <button id="btnPrint" class="btn btn-warning"><i class="fas fa-print">列印</i></button>
+                    </div>
+                </form>
+                <form id="form1" target="_blank" method="post" action="/fixall/Admin/PrintMultiple">
+                    <input name="AssetnoList" id="AssetnoList" type="hidden">
+                    <input name="__RequestVerificationToken" type="hidden"
+                        value="CfDJ8MnqSxyrT4hOo6G1FZry8bqYYse9Qy1d_PAO1zK5ylnmAU_u1s-Bx5baH2OS-sl38bsQPgB8DxfzjqrqzfwnESu6m7ARC0ug5vRoRuGtFsER9e1wPtXGKpLke6kUvqAdga1f8KzNRsvmX6ZNZtmfyKQ3TXf_7cuIEBf61kWd1CnAkAb36W4ImPxi6BanicJrSQ">
+                </form>
+            </div>
+        </div>
+
+        <!-- 查詢結果Grid Panel -->
+        <div class="card  card-info border-info">
+            <div class="card-body ">
+                <div class="card-title " style="float:none">
+                    <h3 class="text-center border-top border-bottom border-info">查詢結果(序號及類別可以簡單排序)</h3>
+                </div>
+                <div class="mx-auto k-grid k-widget k-grid-display-block" id="gridMain" name="gridMain" data-role="grid"
+                    style="">
+                    <div class="k-grid-header" style="padding-right: 17px;">
+                        <div class="k-grid-header-wrap k-auto-scrollable">
+                            <table role="grid" tabindex="-1">
+                                <colgroup>
+                                    <col style="width:50px">
+                                    <col style="width:60px">
+                                    <col style="width:90px">
+                                    <col style="width:120px">
+                                    <col style="width:80px">
+                                    <col style="width:150px">
+                                    <col style="width:140px">
+                                    <col style="width:250px">
+                                    <col style="width:50px">
+                                    <col style="width:50px">
+                                    <col style="width:50px">
+                                    <col style="width:50px">
+                                </colgroup>
+                                <thead role="rowgroup">
+                                    <tr role="row">
+                                        <th scope="col" headers="undefined" id="ddbe8501-41a6-4f41-9723-2956b324efea"
+                                            rowspan="1" data-index="0" class="k-header"><input
+                                                class="k-checkbox k-checkbox-md k-rounded-md" data-role="checkbox"
+                                                aria-label="Select all rows" aria-checked="false" type="checkbox"></th>
+                                        <th scope="col" role="columnheader" data-field="StatusDescr"
+                                            aria-haspopup="true" rowspan="1" data-title="狀態" data-index="1"
+                                            headers="undefined" id="edcf3fa8-cabb-4b25-9fa1-f8a44eb30407"
+                                            class="k-header"><span class="k-cell-inner"><span class="k-link"><span
+                                                        class="k-column-title">狀態</span></span></span></th>
+                                        <th scope="col" role="columnheader" data-field="Seqno" aria-haspopup="true"
+                                            rowspan="1" data-title="序號" data-index="2" headers="undefined"
+                                            id="cc4888e7-45a2-4232-ae05-a0bd877cac04" class="k-header"
+                                            data-role="columnsorter"><span class="k-cell-inner"><span
+                                                    class="k-link"><span class="k-column-title">序號</span></span></span>
+                                        </th>
+                                        <th scope="col" role="columnheader" data-field="APP_DATE" aria-haspopup="true"
+                                            rowspan="1" data-title="申請日期" data-index="3" headers="undefined"
+                                            id="a7c981a2-b851-4f04-8e86-bb4fce54bdfb" class="k-header"
+                                            data-role="columnsorter"><span class="k-cell-inner"><span
+                                                    class="k-link"><span
+                                                        class="k-column-title">申請日期</span></span></span></th>
+                                        <th scope="col" role="columnheader" data-field="ApplyerName"
+                                            aria-haspopup="true" rowspan="1" data-title="申請人" data-index="4"
+                                            headers="undefined" id="e820d965-0957-4d20-bf0b-6a22730059fa"
+                                            class="k-header" data-role="columnsorter"><span class="k-cell-inner"><span
+                                                    class="k-link"><span class="k-column-title">申請人</span></span></span>
+                                        </th>
+                                        <th scope="col" role="columnheader" data-field="ApplyerDepName"
+                                            aria-haspopup="true" rowspan="1" data-title="單位" data-index="5"
+                                            headers="undefined" id="c19c8c1c-0929-4a69-8dcb-c401f8175e52"
+                                            class="k-header"><span class="k-cell-inner"><span class="k-link"><span
+                                                        class="k-column-title">單位</span></span></span></th>
+                                        <th scope="col" role="columnheader" data-field="Item" aria-haspopup="true"
+                                            rowspan="1" data-title="類別" data-index="6" headers="undefined"
+                                            id="c3ac859b-9538-4b71-89d0-28a7df614b73" class="k-header"
+                                            data-role="columnsorter"><span class="k-cell-inner"><span
+                                                    class="k-link"><span class="k-column-title">類別</span></span></span>
+                                        </th>
+                                        <th scope="col" role="columnheader" data-field="Remark" aria-haspopup="true"
+                                            rowspan="1" data-title="項目(地點)" data-index="7" headers="undefined"
+                                            id="e6383db9-fa2a-43ba-9edb-85d110c29a8f" class="k-header"><span
+                                                class="k-cell-inner"><span class="k-link"><span
+                                                        class="k-column-title">項目(地點)</span></span></span></th>
+                                        <th scope="col" role="columnheader" aria-haspopup="true" rowspan="1"
+                                            data-title="完工" data-index="8" headers="undefined"
+                                            id="beaecb7e-0029-46bb-bcb0-d40da3f0273a" class="k-header"><span
+                                                class="k-cell-inner"><span class="k-link"><span
+                                                        class="k-column-title">完工</span></span></span></th>
+                                        <th scope="col" role="columnheader" aria-haspopup="true" rowspan="1"
+                                            data-title="列印" data-index="9" headers="undefined"
+                                            id="fbb43db8-f917-4c02-a580-0283bb8b3a4e" class="k-header"><span
+                                                class="k-cell-inner"><span class="k-link"><span
+                                                        class="k-column-title">列印</span></span></span></th>
+                                        <th scope="col" role="columnheader" aria-haspopup="true" rowspan="1"
+                                            data-title="退件" data-index="10" headers="undefined"
+                                            id="f822d7dd-35a9-457d-bbf1-5e6c6213687e" class="k-header"><span
+                                                class="k-cell-inner"><span class="k-link"><span
+                                                        class="k-column-title">退件</span></span></span></th>
+                                        <th scope="col" role="columnheader" aria-haspopup="true" rowspan="1"
+                                            data-title="通知" data-index="11" headers="undefined"
+                                            id="e77d66ed-f622-4aec-84a2-882c8fcc6ec3" class="k-header"><span
+                                                class="k-cell-inner"><span class="k-link"><span
+                                                        class="k-column-title">通知</span></span></span></th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="k-grid-content k-auto-scrollable">
+                        <table role="grid" tabindex="0">
+                            <colgroup>
+                                <col style="width:50px">
+                                <col style="width:60px">
+                                <col style="width:90px">
+                                <col style="width:120px">
+                                <col style="width:80px">
+                                <col style="width:150px">
+                                <col style="width:140px">
+                                <col style="width:250px">
+                                <col style="width:50px">
+                                <col style="width:50px">
+                                <col style="width:50px">
+                                <col style="width:50px">
+                            </colgroup>
+                            <tbody role="rowgroup"></tbody>
+                        </table>
+                        <div class="k-grid-norecords">
+                            <div class="k-grid-norecords-template" style="margin:0 auto;position:static;">無相關資料</div>
+                        </div>
+                        <div class="k-grid-content-expander" style="width: 1829px;"></div>
+                    </div>
+                    <div class="k-pager-wrap k-grid-pager k-widget k-floatwrap" data-role="pager"
+                        aria-label="Page navigation, page 0 of 0" role="application"
+                        id="e7758501-7cf2-4d77-be80-23b04e7506dd" tabindex="0"><a href="#" title="首頁"
+                            aria-describedby="e7758501-7cf2-4d77-be80-23b04e7506dd"
+                            class="k-link k-pager-nav k-pager-first k-state-disabled" data-page="1" tabindex="-1"><span
+                                class="k-icon k-i-arrow-end-left"></span></a><a href="#" title="上一頁"
+                            aria-describedby="e7758501-7cf2-4d77-be80-23b04e7506dd"
+                            class="k-link k-pager-nav k-state-disabled" data-page="1" tabindex="-1"><span
+                                class="k-icon k-i-arrow-60-left"></span></a>
+                        <div class="k-pager-numbers-wrap"><select class="k-dropdown k-picker k-dropdown-list">
+                                <option value="0"></option>
+                            </select>
+                            <ul class="k-pager-numbers">
+                                <li><span tabindex="-1" aria-label="Page 0" class="k-link k-state-selected">0</span>
+                                </li>
+                            </ul>
+                        </div><a href="#" title="下一頁" aria-describedby="e7758501-7cf2-4d77-be80-23b04e7506dd"
+                            class="k-link k-pager-nav k-state-disabled" data-page="0" tabindex="-1"><span
+                                class="k-icon k-i-arrow-60-right"></span></a><a href="#" title="末頁"
+                            aria-describedby="e7758501-7cf2-4d77-be80-23b04e7506dd"
+                            class="k-link k-pager-nav k-pager-last k-state-disabled" data-page="0" tabindex="-1"><span
+                                class="k-icon k-i-arrow-end-right"></span></a><span class="k-pager-sizes k-label"><span
+                                title="" class="k-picker k-dropdown k-widget k-picker-solid k-picker-md k-rounded-md"
+                                unselectable="on" role="listbox" aria-haspopup="listbox" aria-expanded="false"
+                                tabindex="-1" aria-owns="e947afa9-64cd-4ab9-b233-fb76718d9d99_listbox"
+                                aria-controls="e947afa9-64cd-4ab9-b233-fb76718d9d99_listbox"
+                                aria-label="Page sizes drop down" aria-live="polite" aria-disabled="false"
+                                aria-readonly="false" aria-busy="false" style=""
+                                aria-activedescendant="b3f2018e-2dee-4852-9e4d-74a898c5f98f"><span
+                                    id="b3f2018e-2dee-4852-9e4d-74a898c5f98f" unselectable="on" role="option"
+                                    aria-selected="true" class="k-input-inner"><span
+                                        class="k-input-value-text">15</span></span><button type="button" tabindex="-1"
+                                    unselectable="on"
+                                    class="k-select k-input-button k-button k-button-md k-button-solid k-button-solid-base k-icon-button"
+                                    aria-label="select"><span
+                                        class="k-icon k-i-arrow-s k-button-icon"></span></button><select aria-label="15"
+                                    data-role="dropdownlist" style="display: none;">
+                                    <option value="15" selected="selected">15</option>
+                                    <option value="20">20</option>
+                                </select></span>條每頁</span><a href="#" class="k-pager-refresh k-link" title="刷新"
+                            aria-label="刷新" tabindex="-1"><span class="k-icon k-i-reload"></span></a><span
+                            class="k-pager-info k-label">無相關資料</span>
+                    </div>
+                </div>
+                <script>kendo.syncReady(function () { jQuery("#gridMain").kendoGrid({ "autoBind": false, "navigatable": true, "pageable": { "buttonCount": 5, "refresh": true, "pageSizes": [15, 20] }, "persistSelection": true, "sortable": true, "columns": [{ "selectable": true, "attributes": { "class": "text-center" }, "width": 50 }, { "field": "StatusDescr", "sortable": false, "title": "狀態", "attributes": { "class": "text-center" }, "width": 60 }, { "field": "Seqno", "title": "序號", "attributes": { "class": "text-center" }, "width": 90 }, { "field": "APP_DATE", "title": "申請日期", "attributes": { "class": "text-center" }, "width": 120, "template": "#=kendo.toString(kendo.parseDate(ApplyDate), \u0027yyyy/MM/dd HH:mm\u0027)#" }, { "field": "ApplyerName", "title": "申請人", "attributes": { "class": "text-center" }, "width": 80 }, { "field": "ApplyerDepName", "sortable": false, "title": "單位", "width": 150 }, { "field": "Item", "title": "類別", "width": 140, "template": "\u003cspan class=\u0027longtext showtitle\u0027 title=\u0027#=FixItem#\u0027\u003e#=FixItem#\u003c/span\u003e" }, { "field": "Remark", "sortable": false, "title": "項目(地點)", "width": 250, "template": "\u003cspan class=\u0027longtext showtitle\u0027 title=\u0027#=Remark#\u0027\u003e#=Remark#\u003c/span\u003e" }, { "sortable": false, "title": "完工", "attributes": { "class": "text-center" }, "width": 50, "template": "#=EditToFinishFormatter(CanSetToFinish,Seqno)#" }, { "sortable": false, "title": "列印", "attributes": { "class": "text-center" }, "width": 50, "template": "#=PrintTemplate(Seqno)#" }, { "sortable": false, "title": "退件", "attributes": { "class": "text-center" }, "width": 50, "template": "#=RejectCellFormatter(IsFinishOrReject,Seqno)#" }, { "sortable": false, "title": "通知", "attributes": { "class": "text-center" }, "width": 50, "template": "#=LongJobFormatter(CanSetToFinish,Seqno)#" }], "dataSource": { "batch": false, "page": 1, "pageSize": 15, "schema": { "model": { "id": "Seqno" }, "data": "Data", "errors": "Errors", "total": "Total" }, "serverAggregates": true, "serverFiltering": true, "serverGrouping": true, "serverPaging": true, "serverSorting": true, "transport": { "read": { "dataType": "json", "url": "/fixall/Admin/GetQueryResult", "data": Filter } }, "type": (function () { if (kendo.data.transports['aspnetmvc-ajax']) { return 'aspnetmvc-ajax'; } else { throw new Error('The kendo.aspnetmvc.min.js script is not included.'); } })() } }); });</script>
+            </div>
+        </div>
+
+        <script>kendo.syncReady(function () { jQuery("#finishModal").kendoWindow({ "scrollable": false, "visible": false, "title": "完工編輯", "modal": true, "width": "600" }); });</script>
+
+        <script>kendo.syncReady(function () { jQuery("#rejectModal").kendoWindow({ "scrollable": true, "visible": false, "title": "退件/通知", "modal": true, "width": "500" }); });</script>
+
+        <script>kendo.syncReady(function () { jQuery("#longJobModal").kendoWindow({ "scrollable": true, "visible": false, "title": "無法立即完工通知", "modal": true, "width": "600" }); });</script>
+
+        <script>kendo.syncReady(function () { jQuery("#modifyDialog").kendoWindow({ "scrollable": false, "visible": false, "title": "修改申請的類別", "modal": true, "width": "500" }); });</script>
+
+
+    </div>
+
+
+    <script src="/fixall/lib/jqueryui/jquery-ui.min.js"></script>
+    <script src="/fixall/lib/popper/umd/popper.min.js"></script>
+    <script src="/fixall/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- 應該由require.config定義路徑，但是為了TypeScript還不流行就先載入吧 -->
+    <script src="/fixall/lib/sweetalert2/dist/sweetalert2.js"></script>
+    <script src="/fixall/lib/toastr/toastr.min.js"></script>
+    <script src="/fixall/lib/perfectscrollbar/dist/perfect-scrollbar.min.js"></script>
+    <script src="/fixall/lib/block-ui/jquery.blockUI.js"></script>
+
+    <script>
+            // < !--delayed - block: __nkust_function_scripts__-- >;
+        var _MAIN_;//每個網頁的主要類別
+        var _Event_ = [];
+
+        var require = {
+            // Note: baseUrl set at optimization stage (release) or in _Layout (dev)
+            //baseUrl = ./generated ,
+            paths: {
+                // Map library names to their physical location relative to baseUrl
+                "sweetalert2": "/fixall/lib/sweetalert2/dist/sweetalert2"
+            },
+            urlArgs: "bust=" + new Date().getTime()
+        };
+        if (typeof exports === 'object') {
+            exports.config = require;
+        }
+        $.fn.serializeObject = function () {
+            var o = {};
+            var a = this.serializeArray();
+            $.each(a, function () {
+                if (o[this.name] !== undefined) {
+                    if (!o[this.name].push) {
+                        o[this.name] = [o[this.name]];
+                    }
+                    o[this.name].push(this.value || '');
+                }
+                else {
+                    o[this.name] = this.value || '';
+                }
+            });
+            return o;
+        };
+    </script>
+    <script src="/fixall/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0"></script>
+    <script type="text/javascript">
+        $(function () {
+            // https://codepen.io/surjithctly/pen/PJqKzQ
+            $('.dropdown-menu a.dropdown-toggle').on('click', function (e) {
+                if (!$(this).next().hasClass('show')) {
+                    $(this).parents('.dropdown-menu').first().find('.show').removeClass("show");
+                }
+                var $subMenu = $(this).next(".dropdown-menu");
+                $subMenu.toggleClass('show');
+                $(this).parents('li.nav-item.dropdown.show').on('hidden.bs.dropdown', function (e) {
+                    $('.dropdown-submenu .show').removeClass("show");
+                });
+                return false;
+            });
+            $('.help').click(function () {
+                introJs().start();
+                return false;
+            });
+            $('body').on('click', '.cmd_closewindow', function (e) {
+                e.preventDefault();
+                $(this).closest("[data-role=window]").data("kendoWindow").close();
+            })
+                // < !--delayed - block: __nkust_global_scripts__-- >
+    
+            });
+    </script>
+
+    <script src="/fixall/lib/jquery-validation/jquery.validate.min.js"></script>
+    <script src="/fixall/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="/fixall/lib/jquery-ajax-unobtrusive/dist/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="/fixall/js/jquery.validate.inline.js"></script>
+
+    <script src="/fixall/lib/jquery-form/dist/jquery.form.min.js" type="text/javascript"></script>
+    <script src="/fixall/js/Admin/Index.js" type="module"></script>
+    <script>
+        function Filter() {
+            return $('#queryForm').serializeObject();
+        }
+        function PrintTemplate(id) {
+            return `<a href='/fixall/Print/PrintSingle/?Seqno=${id}' class='btn btn-sm btn-default evtPrint  showtitle' target='_blank' data-seqno='${id}' title='列印維修單且寄發eMail通知報修者'><i class='fas fa-print text-primary'></i></a>`;
+        }
+
+        function EditToFinishFormatter(cellvalue, id) {
+            if (cellvalue)
+                return `<a href='javascript:void(0)' class='btn btn-sm btn-default evtfinishjob  showtitle' style='cursor: pointer;color:blue' data-seqno='${id}' title='設定完工'><i class='fas fa-check'></i></a>`;
+            return "";
+        }
+
+        function RejectCellFormatter(cellvalue, id) {
+            if (fgCANREJECT == 'N' || cellvalue) {
+                return `<a href='javascript:void(0)' class='btn btn-sm btn-danger btnreject disabled  showtitle' style='cursor: pointer' data-seqno='${id}' title='退件'><i class='fas fa-undo'></i></a>`;
+            }
+            else {
+                return `<a href='javascript:void(0)' class='btn btn-sm btn-danger  btnreject  showtitle' style='cursor: pointer' data-seqno='${id}' title='退件'><i class='fas fa-undo'></i></a>`;
+            }
+        }
+        function ModifyCellFormatter(cellvalue, id) {
+            if (!cellvalue)
+                return `<a href='javascript:void(0)' class='btn btn-sm btn-info btnmodify showtitle' style='cursor: pointer' data-seqno='${id}' title='變更維修單類別：把目前報修設定成完工，並新增一張報修單'><i class='fas fa-pencil-alt'></i></a>`;
+            return "";
+        }
+        function LongJobFormatter(cellvalue, id) {
+            return `<a href='javascript:void(0)' class='btn btn-default btn-sm evtLongJob showtitle' style='cursor: pointer;color:blue' data-seqno='${id}' title='通知無法立即完工'><i class='fa-envelope fas'></i></a>`;
+        }
+    </script>
+    <script type="text/javascript">
+        var selectedDetail;
+        var URL_SETFINISH = '/fixall/Admin/SetFinish';
+        var URL_REJECT = '/fixall/Admin/Reject';
+        var URL_SENDMAIL = '/fixall/Admin/SendMail';
+        var fgCANREJECT = 'Y';
+        var URL_PRINMT = '/fixall/Print/PrintSingle';
+        console.log(fgCANREJECT);
+    </script>
+
+
+
+    <div aria-hidden="true" class="k-calendar-container k-popup k-group k-reset" data-role="popup"
+        id="BeginDate_dateview" style="display: none; position: absolute;"></div>
+    <div aria-hidden="true" class="k-calendar-container k-popup k-group k-reset" data-role="popup" id="EndDate_dateview"
+        style="display: none; position: absolute;"></div>
+    <div data-role="popup" class="k-popup k-group k-reset" aria-hidden="true"
+        style="display: none; position: absolute;">
+        <div class="k-list k-list-md" id="QueryClass-list">
+            <div class="k-list-optionlabel k-selected k-focus" id="d95b3540-02b5-4ad9-b2f1-d4ed1d5f5d48">全部</div>
+            <div class="k-list-group-sticky-header" style="display:none"></div>
+            <div class="k-list-content k-list-scroller" unselectable="on">
+                <ul unselectable="on" tabindex="-1" aria-hidden="true" id="QueryClass_listbox" aria-live="off"
+                    data-role="staticlist" role="listbox" class="k-list-ul">
+                    <li tabindex="-1" role="option" unselectable="on" class="k-list-item" aria-selected="false"
+                        data-offset-index="0"><span class="k-list-item-text">(建)電腦</span></li>
+                    <li tabindex="-1" role="option" unselectable="on" class="k-list-item" aria-selected="false"
+                        data-offset-index="1"><span class="k-list-item-text">(燕)電腦</span></li>
+                    <li tabindex="-1" role="option" unselectable="on" class="k-list-item" aria-selected="false"
+                        data-offset-index="2"><span class="k-list-item-text">(一)電腦</span></li>
+                    <li tabindex="-1" role="option" unselectable="on" class="k-list-item" aria-selected="false"
+                        data-offset-index="3"><span class="k-list-item-text">(楠)電腦</span></li>
+                    <li tabindex="-1" role="option" unselectable="on" class="k-list-item" aria-selected="false"
+                        data-offset-index="4"><span class="k-list-item-text">(旗)電腦</span></li>
+                </ul>
+            </div>
+            <div class="k-no-data" style="display: none;">無相關資料</div>
+        </div>
+    </div>
+    <div class="k-widget k-window" tabindex="0"
+        style="min-width: 90px; min-height: 50px; width: 600px; display: none; top: 393.391px; left: 15px;"
+        data-role="draggable" role="dialog" aria-labelledby="finishModal_wnd_title">
+        <div class="k-window-titlebar k-hstack"><span class="k-window-title" id="finishModal_wnd_title">完工編輯</span>
+            <div class="k-window-actions k-hstack"><a role="button" href="#"
+                    class="k-button k-button-md k-rounded-md k-button-flat k-button-flat-base k-icon-button k-window-action"
+                    aria-label="Close"><span class="k-button-icon k-icon k-i-close"></span></a></div>
+        </div>
+        <div data-url="/fixall/Admin/GetFixDetail" id="finishModal" name="finishModal" data-role="window"
+            class="k-window-content" style="overflow: hidden;">
+        </div>
+        <div class="k-resize-handle k-resize-n"></div>
+        <div class="k-resize-handle k-resize-e"></div>
+        <div class="k-resize-handle k-resize-s"></div>
+        <div class="k-resize-handle k-resize-w"></div>
+        <div class="k-resize-handle k-resize-se"></div>
+        <div class="k-resize-handle k-resize-sw"></div>
+        <div class="k-resize-handle k-resize-ne"></div>
+        <div class="k-resize-handle k-resize-nw"></div>
+    </div>
+    <div class="k-widget k-window" tabindex="0"
+        style="min-width: 90px; min-height: 50px; width: 500px; display: none; top: 393.391px; left: 15px;"
+        data-role="draggable" role="dialog" aria-labelledby="rejectModal_wnd_title">
+        <div class="k-window-titlebar k-hstack"><span class="k-window-title" id="rejectModal_wnd_title">退件/通知</span>
+            <div class="k-window-actions k-hstack"><a role="button" href="#"
+                    class="k-button k-button-md k-rounded-md k-button-flat k-button-flat-base k-icon-button k-window-action"
+                    aria-label="Close"><span class="k-button-icon k-icon k-i-close"></span></a></div>
+        </div>
+        <div id="rejectModal" name="rejectModal" data-role="window" class="k-window-content">
+
+            <div class="card shadow p-2" style="font-size:1.1rem;">
+                <div class="card-heading">
+                    <span>序號：</span><span id="lblReason_reject"></span>
+                </div>
+            </div>
+            <div class="card-body" style="font-size:1.1rem;">
+                <div class="card-heading">
+                    退件理由
+                </div>
+                <input class="rejectrad" id="RejectReason" name="RejectReason" type="radio" value="A">非本維修小組業務<br>
+                <input class="rejectrad" id="RejectReason" name="RejectReason" type="radio" value="B">非本校維修業務<br>
+                <input checked="checked" class="rejectrad" id="RejectReason" name="RejectReason" type="radio"
+                    value="O">其他，請說明
+            </div>
+            <text>
+                說明: <textarea class="form-control" cols="60" id="RejectOther" name="RejectOther" rows="3"></textarea>
+            </text>
+            <div class="float-left mt-2">
+                <button type="button" class="btn btn-primary" id="btnInfoNoReject"><i
+                        class="far fa-envelope"></i>通知(不退件)</button>
+                <button type="button" class="btn btn-danger" id="btnRejectAndInfo"><i
+                        class="fas fa-backspace"></i>退件</button>
+
+            </div>
+            <div class="float-right  mt-2">
+                <button class="btn btn-outline-dark cmd_closewindow"><span class="fas fa-times"></span>取消</button>
+            </div>
+
+
+        </div>
+        <div class="k-resize-handle k-resize-n"></div>
+        <div class="k-resize-handle k-resize-e"></div>
+        <div class="k-resize-handle k-resize-s"></div>
+        <div class="k-resize-handle k-resize-w"></div>
+        <div class="k-resize-handle k-resize-se"></div>
+        <div class="k-resize-handle k-resize-sw"></div>
+        <div class="k-resize-handle k-resize-ne"></div>
+        <div class="k-resize-handle k-resize-nw"></div>
+    </div>
+    <div class="k-widget k-window" tabindex="0"
+        style="min-width: 90px; min-height: 50px; width: 600px; display: none; top: 393.391px; left: 15px;"
+        data-role="draggable" role="dialog" aria-labelledby="longJobModal_wnd_title">
+        <div class="k-window-titlebar k-hstack"><span class="k-window-title" id="longJobModal_wnd_title">無法立即完工通知</span>
+            <div class="k-window-actions k-hstack"><a role="button" href="#"
+                    class="k-button k-button-md k-rounded-md k-button-flat k-button-flat-base k-icon-button k-window-action"
+                    aria-label="Close"><span class="k-button-icon k-icon k-i-close"></span></a></div>
+        </div>
+        <div data-url="/fixall/Admin/LongJob" id="longJobModal" name="longJobModal" data-role="window"
+            class="k-window-content">
+
+            <div class="card shadow p-2" style="font-size:1.1rem;">
+                <div class="card-heading">
+                    <div>序號：<span class="font-weight-bold" id="lblReason_longjob"></span></div>
+                </div>
+                <div class="card-body">
+                    <h4>原因</h4>
+                    <input checked="checked" id="LongJobReason" name="LongJobReason" type="radio" value="A">待料<br>
+                    <input id="LongJobReason" name="LongJobReason" type="radio" value="B">請廠商評估施作<br>
+                    <input id="LongJobReason" name="LongJobReason" type="radio" value="C">故障原因待查<br>
+                    <input id="LongJobReason" name="LongJobReason" type="radio" value="O">其他，請說明
+                </div>
+            </div>
+            <text>
+                說明: <textarea class="form-control" cols="60" id="LongJobOther" name="LongJobOther" rows="3"></textarea>
+            </text>
+            <div class="float-left mt-2">
+                <button type="button" class="btn btn-primary " id="btnInfoLongJob"><i
+                        class="fas fa-check"></i>確定且通知</button>
+            </div>
+            <div class="float-right  mt-2">
+                <button class="btn btn-outline-dark cmd_closewindow"><span class="fas fa-times"></span>取消</button>
+            </div>
+
+        </div>
+        <div class="k-resize-handle k-resize-n"></div>
+        <div class="k-resize-handle k-resize-e"></div>
+        <div class="k-resize-handle k-resize-s"></div>
+        <div class="k-resize-handle k-resize-w"></div>
+        <div class="k-resize-handle k-resize-se"></div>
+        <div class="k-resize-handle k-resize-sw"></div>
+        <div class="k-resize-handle k-resize-ne"></div>
+        <div class="k-resize-handle k-resize-nw"></div>
+    </div>
+    <div class="k-widget k-window" tabindex="0"
+        style="min-width: 90px; min-height: 50px; width: 500px; display: none; top: 393.391px; left: 15px;"
+        data-role="draggable" role="dialog" aria-labelledby="modifyDialog_wnd_title">
+        <div class="k-window-titlebar k-hstack"><span class="k-window-title" id="modifyDialog_wnd_title">修改申請的類別</span>
+            <div class="k-window-actions k-hstack"><a role="button" href="#"
+                    class="k-button k-button-md k-rounded-md k-button-flat k-button-flat-base k-icon-button k-window-action"
+                    aria-label="Close"><span class="k-button-icon k-icon k-i-close"></span></a></div>
+        </div>
+        <div data-url="/fixall/Admin/GetModifyClassView" id="modifyDialog" name="modifyDialog" data-role="window"
+            class="k-window-content" style="overflow: hidden;">
+
+        </div>
+        <div class="k-resize-handle k-resize-n"></div>
+        <div class="k-resize-handle k-resize-e"></div>
+        <div class="k-resize-handle k-resize-s"></div>
+        <div class="k-resize-handle k-resize-w"></div>
+        <div class="k-resize-handle k-resize-se"></div>
+        <div class="k-resize-handle k-resize-sw"></div>
+        <div class="k-resize-handle k-resize-ne"></div>
+        <div class="k-resize-handle k-resize-nw"></div>
+    </div>
+    <div data-role="popup" class="k-popup k-group k-reset" aria-hidden="true"
+        style="display: none; position: absolute;">
+        <div class="k-list k-list-md" id="e947afa9-64cd-4ab9-b233-fb76718d9d99-list">
+            <div class="k-list-group-sticky-header" style="display:none"></div>
+            <div class="k-list-content k-list-scroller" unselectable="on">
+                <ul unselectable="on" tabindex="-1" aria-hidden="true" id="e947afa9-64cd-4ab9-b233-fb76718d9d99_listbox"
+                    aria-live="off" data-role="staticlist" role="listbox" aria-label="Page sizes drop down"
+                    class="k-list-ul">
+                    <li tabindex="-1" role="option" unselectable="on" class="k-list-item k-selected k-focus"
+                        aria-selected="true" data-offset-index="0" id="d4df2622-d3e2-4480-a479-d85b33b4b64e"><span
+                            class="k-list-item-text">15</span></li>
+                    <li tabindex="-1" role="option" unselectable="on" class="k-list-item" aria-selected="false"
+                        data-offset-index="1"><span class="k-list-item-text">20</span></li>
+                </ul>
+            </div>
+            <div class="k-no-data" style="display: none;">無相關資料</div>
+        </div>
+    </div>
+    <div data-role="popup" class="k-popup k-group k-reset" aria-hidden="true"
+        style="display: none; position: absolute;">
+        <div class="k-list k-list-md" id="Process-list">
+            <div class="k-list-group-sticky-header" style="display:none"></div>
+            <div class="k-list-content k-list-scroller" unselectable="on">
+                <ul unselectable="on" tabindex="-1" aria-hidden="true" id="Process_listbox" aria-live="off"
+                    data-role="staticlist" role="listbox" class="k-list-ul">
+                    <li tabindex="-1" role="option" unselectable="on" class="k-list-item k-selected k-focus"
+                        aria-selected="true" data-offset-index="0" id="dade1e23-f723-476a-a694-b4cb6dd9200f"><span
+                            class="k-list-item-text">未列印</span></li>
+                    <li tabindex="-1" role="option" unselectable="on" class="k-list-item" aria-selected="false"
+                        data-offset-index="1"><span class="k-list-item-text">已列印(辦理中)</span></li>
+                    <li tabindex="-1" role="option" unselectable="on" class="k-list-item" aria-selected="false"
+                        data-offset-index="2"><span class="k-list-item-text">完工</span></li>
+                    <li tabindex="-1" role="option" unselectable="on" class="k-list-item" aria-selected="false"
+                        data-offset-index="3"><span class="k-list-item-text">無法立即完工</span></li>
+                    <li tabindex="-1" role="option" unselectable="on" class="k-list-item" aria-selected="false"
+                        data-offset-index="4"><span class="k-list-item-text">全部</span></li>
+                </ul>
+            </div>
+            <div class="k-no-data" style="display: none;">無相關資料</div>
+        </div>
+    </div>
+</body>
+
+</html>
