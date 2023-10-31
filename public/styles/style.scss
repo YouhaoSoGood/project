@@ -1,0 +1,176 @@
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+	font-family: 'Noto Sans TC',
+		sans-serif;
+	font-family: 'Roboto',
+		sans-serif;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+	display: block;
+}
+
+body {
+	line-height: 1;
+}
+
+ol,
+ul {
+	list-style: none;
+}
+
+blockquote,
+q {
+	quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+	content: "";
+	content: none;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/*主題色*/
+$color1: #003d73;
+$color2: #0878a4;
+$color3: #1ecfd6;
+$color4: #edd170;
+$color5: #c05640;
+
+/*----------------------------------*/
+// .title {
+// 	background-color: bisque;
+// 	display: flex;
+
+// 	/*justify-content: space-between; /* 均匀排列每個元素首個元素放置於起点，末尾元素放置於终点 */
+// 	a {
+// 		justify-content: center;
+// 		text-decoration: none;
+// 		right: 0;
+// 		position: absolute;
+// 		font-size: 50px;
+// 	}
+// }
+
+// h1 {
+// 	font-size: 50px;
+// }
+
+// li {
+// 	font-size: 50px;
+// 	text-align: center;
+// 	/*置中*/
+
+// }
+
+
+
+@import "repair.scss";
+@import "inquire.scss";
+@import "login.scss";
+@import "manager.scss";
+@import "_index.scss";
+@import "_header-footer.scss";

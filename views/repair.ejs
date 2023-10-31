@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../styles/style.css" />
+  <title>叫修單</title>
+</head>
+
+<body>
+  <div class="repair">
+    <div class="background-video-repair">
+      <video autoplay muted loop playsinline>
+        <source src="../img/video01.mp4" type="video/mp4" />
+      </video>
+    </div>
+
+    <div>
+      <%- include("../components/header.ejs") %>
+    </div>
+
+    <div class="repair-body">
+      <div class="repair-main">
+        <div>
+          <label for="name">名字:</label>
+          <p><input type="text" id="name" name="name" /></p>
+        </div>
+
+        <div>
+          <label for="phone">電話:</label>
+          <p><input type="number" id="phone" name="phone" /></p>
+        </div>
+
+        <div>
+          <label for="unit">地址:</label>
+          <p><input type="text" id="unit" name="unit" /></p>
+        </div>
+
+        <div class="body-content">
+          <label for="content">問題內容:</label>
+          <p><textarea id="content" name="content"></textarea></p>
+        </div>
+
+        <div class="data-button">
+          <button onclick="pushdata()">傳送資料</button>
+        </div>
+      </div>
+
+    </div>
+
+    <div>
+      <%- include("../components/footer.ejs") %>
+    </div>
+
+  </div>
+
+  <script>
+    function pushdata() {
+      let name = document.getElementById("name").value;
+      let phone = document.getElementById("phone").value;
+      let unit = document.getElementById("unit").value;
+      let content = document.getElementById("content").value;
+      fetch("/repair", {
+        method: "post",
+        body: JSON.stringify({ name, phone, unit, content }),
+        headers: { "Content-Type": "application/json" },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          // 處理回傳的資料
+          console.log(data);
+          if (data.code == 0) {
+            alert("資料成功上傳");
+            let a = document.createElement("a");
+            a.href = "/";
+            a.click();
+          } else {
+            alert("Error!資料上傳失敗");
+          }
+        })
+        .catch((error) => {
+          // 處理錯誤
+          console.error("發生錯誤:", error);
+        });
+    }
+  </script>
+</body>
+
+</html>

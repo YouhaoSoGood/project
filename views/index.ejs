@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../styles/style.css" />
+  <title>報修網站</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&family=Roboto&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+  <div class="wrap-index">
+    <div class="background-video-index">
+      <video autoplay muted loop playsinline>
+        <source src="../img/video04.mp4" type="video/mp4" />
+      </video>
+    </div>
+
+    <%- include("../components/header.ejs") %>
+
+      <main>
+        <div class="gradually-text"></div>
+      </main>
+
+      <%- include("../components/footer.ejs") %>
+
+  </div>
+  <script>
+
+    let strArr = ["電腦又故障了嗎？", "立即填寫報修單，幫您查看問題所在！"];
+
+    let div = document.querySelector(".gradually-text");
+
+    const delay = (ms) => {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve();
+        }, ms)
+      })
+    }
+
+    async function init() {
+      await delay(1000);
+      for (let i of strArr) {
+        const p = document.createElement("p");
+        div.appendChild(p);
+        for (let j of i) {
+          console.log(j);
+          p.textContent += j;
+          await delay(150);
+        }
+      }
+    }
+    init();
+  </script>
+
+
+  <!-- <script>
+    let logoHeight = document.querySelector(".logo").clientHeight;
+    let mainHeight = document.querySelector(".text-container").style.height = "100px";
+
+  </script> -->
+
+</body>
+
+</html>

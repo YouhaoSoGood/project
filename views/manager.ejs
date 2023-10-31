@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>管理者介面</title>
+    <link rel="stylesheet" href="../styles/style.css">
+</head>
+
+<body>
+    <div class="wrapManager">
+        <div class="background-video-inquire">
+            <video autoplay muted loop playsinline>
+                <source src="../img/video06.mp4" type="video/mp4" />
+            </video>
+        </div>
+        <table>
+            <tr>
+                <td class="table-data">姓名</td>
+                <td class="table-data">電話</td>
+                <td class="table-data">單位</td>
+                <td class="table-data">內容</td>
+                <td class="table-data">維修進度</td>
+                <td class="table-data"></td>
+                <td class="table-data"></td>
+            </tr>
+
+            <% data.forEach( item=>{ %>
+                <tr>
+                    <td>
+                        <%= item.name %>
+                    </td>
+                    <td>
+                        <%= item.phone %>
+                    </td>
+                    <td>
+                        <%= item.unit %>
+                    </td>
+
+                    <td>
+                        <%= item.content %>
+                    </td>
+
+                    <td>
+                        <select name="state" onchange="updataState(this.value,'<%= item._id %>')">
+                            <% item.stateArray.forEach ((item1,index)=>{ %>
+                                <option value="<%= index %>" <% if(item.state==index) { %> selected <% } %>><%= item1 %>
+                                </option>
+                                <% }) %>
+                        </select>
+                    </td>
+                    <td><button onclick="del('<%= item.id %>')">刪除資料</button></td>
+
+                    <td>
+                        <button onclick="window.print()">列印</button>
+                    </td>
+                </tr>
+                <% }) %>
+        </table>
+    </div>
+
+    <script>
+        function del(id) {
+            fetch("/repair", { method: "delete", body: { id } })
+                .then(response => response.json())
+                .then(data => {
+                    // 處理回傳的資料
+                    location.reload();
+                    alert(JSON.stringify(data) + "已刪除");
+                })
+                .catch(error => {
+                    // 處理錯誤
+                    console.error('發生錯誤:', error);
+                });
+        }
+
+        function updataState(selectState, id) {
+            fetch("/manager/updataState", {
+                method: "post",
+                body: JSON.stringify({ selectState, id }),
+                headers: { "Content-Type": "application/json" },
+            }).then(response => response.json()).then(data => {
+                // 在這裡處理服務器返回的數據
+
+            }).catch(e => {
+                console.log(e);
+            });
+        }
+    </script>
+</body>
+
+</html>

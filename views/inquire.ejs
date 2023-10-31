@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/style.css">
+    <title>inquire</title>
+</head>
+
+<body>
+    <div class="wrap-inquire">
+        <div class="background-video-inquire">
+            <video autoplay muted loop playsinline>
+                <source src="../img/video08.mp4" type="video/mp4" />
+            </video>
+        </div>
+        <div>
+            <%- include("../components/header.ejs") %>
+        </div>
+        <table>
+
+
+            <tr>
+                <td class="table-data">姓名</td>
+                <td class="table-data">電話</td>
+                <td class="table-data">單位</td>
+                <td class="table-data">內容</td>
+                <td class="table-data">維修進度</td>
+                <td class="table-data"></td>
+            </tr>
+
+            <% data.forEach( item=>{ %>
+                <tr>
+                    <td>
+
+                        <%= item.name %>
+
+                    </td>
+                    <td>
+                        <%= item.phone %>
+                    </td>
+                    <td>
+                        <%= item.unit %>
+                    </td>
+
+                    <td>
+                        <%= item.content %>
+                    </td>
+
+                    <td>
+                        <%= item.stateText %>
+                    </td>
+                    <td><button onclick="del('<%= item.id %>')">刪除資料</button></td>
+                </tr>
+                <% }) %>
+
+
+        </table>
+        <div>
+            <%- include("../components/footer.ejs") %>
+        </div>
+    </div>
+
+    <script>
+        function del(id) {
+            fetch("/repair", { method: "delete", body: { id } })
+                .then(response => response.json())
+                .then(data => {
+                    // 處理回傳的資料
+                    location.reload();
+                    alert(JSON.stringify(data) + "已刪除");
+                })
+                .catch(error => {
+                    // 處理錯誤
+                    console.error('發生錯誤:', error);
+                });
+        }
+    </script>
+</body>
+
+</html>

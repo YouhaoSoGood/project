@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/style.css">
+    <title>login</title>
+</head>
+
+
+<body>
+    <div class="wrap-login">
+        <div class="background-video-login">
+            <video autoplay muted loop playsinline>
+                <source src="../img/video05.mp4" type="video/mp4" />
+            </video>
+        </div>
+        <form action="/login" method="post" class="login">
+            <div class="login-item">
+                <input type="text" name="account" id="account" required placeholder>
+                <label for="account">帳號</label>
+            </div>
+            <div class="login-item">
+                <input type="password" name="password" id="password" required placeholder>
+                <label for="password">密碼</label>
+            </div>
+            <div class="login-item">
+                <button>登入</button>
+            </div>
+        </form>
+
+
+
+        <div class="prompt">
+            <p class="prompt-title">錯誤提示</p>
+            <p id="msg"></p>
+            <a class="prompt-sumbit" href="/login">確認</a>
+        </div>
+
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const sec = urlParams.get("success");
+        const msg = urlParams.get("msg");
+
+        if (sec === "false") {
+            document.getElementById("msg").textContent = msg;
+            document.querySelector(".prompt").style.display = "flex";
+        }
+    </script>
+
+</body>
+
+</html>

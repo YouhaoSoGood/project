@@ -1,0 +1,125 @@
+.wrap-login {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	width: 100%;
+	// background-image: linear-gradient(to right, $color1, $color2, $color3);
+
+	.background-video-login {
+		height: 100vh;
+		width: 100%;
+		position: fixed; //視窗定位
+		left: 0;
+		top: 0;
+		z-index: -1;
+
+		video {
+			height: 100%;
+			width: 100%;
+			object-fit: cover; //填滿
+		}
+	}
+
+	.login {
+		background-image: linear-gradient(to left, $color3, $color2);
+		border-radius: 0.5rem;
+		min-height: 300px;
+		min-width: 300px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+
+		.login-item {
+			display: flex;
+			flex-direction: column;
+			position: relative;
+			margin: 1.5rem;
+			width: 80%;
+
+			label {
+				position: absolute;
+				top: 50%;
+				left: 0.2rem;
+				padding: 0rem 0.3rem;
+				transform: translateY(-50%);
+				transition: all .3s;
+				background-color: white;
+				border-top-left-radius: 0.3rem;
+				border-top-right-radius: 0.3rem;
+			}
+
+			input {
+				border-radius: 0.3rem;
+				border: 1px solid;
+				padding: 0.5rem;
+
+
+				&:focus {
+					outline: none;
+					border-top-left-radius: 0;
+				}
+
+				&:not(:placeholder-shown) {
+					outline: none;
+					border-top-left-radius: none;
+				}
+
+			}
+
+			input:focus~label {
+				top: -25%;
+				font-size: 0.8rem;
+				border-left: 1px solid black;
+				border-top: 1px solid black;
+				border-right: 1px solid black;
+				padding: 0.3rem 0.3rem;
+				left: 0rem;
+			}
+
+			input:not(:placeholder-shown)~label {
+				top: -15%;
+				font-size: 0.8rem;
+				border-left: 1px solid black;
+				border-top: 1px solid black;
+				border-right: 1px solid black;
+				padding: 0.3rem 0.3rem;
+				left: 0;
+			}
+		}
+	}
+
+
+
+	.prompt {
+		width: 200px;
+		height: 100px;
+		background-color: #f5f5f5;
+		position: fixed;
+		border-radius: 0.5rem;
+		border: 1px solid black;
+		display: none;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
+		padding: 0.7rem;
+
+
+		.prompt-title {
+			margin-bottom: 1rem;
+			font-size: 15px;
+		}
+
+		.prompt-sumbit {
+			margin-top: 1rem;
+			padding: 0.5rem;
+			text-decoration: none;
+			color: white;
+			// background-color: $color5;
+
+		}
+
+	}
+
+}
