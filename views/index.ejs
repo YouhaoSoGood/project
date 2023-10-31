@@ -15,17 +15,30 @@
 </head>
 
 <body>
-  <div class="wrap-index">
+  <div class="wrap-index" id="aa">
     <div class="background-video-index">
       <video autoplay muted loop playsinline>
-        <source src="../img/video04.mp4" type="video/mp4" />
+        <source src="https://i.imgur.com/6Uc3TAS.mp4" type="video/mp4" />
       </video>
     </div>
 
     <%- include("../components/header.ejs") %>
 
-      <main>
+      <div class="marquee">
         <div class="gradually-text"></div>
+      </div>
+
+      <main>
+        <div class="container">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/iT_BCzcuF2g?si=FthxhYqrLv-Xz-N1"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+
+          <div class="container-text">本教學影片我們用一台測試主機教大家怎麼故障排除電腦最常遇到的問題
+            出處:Youtube <a href="https://www.youtube.com/@allenhaw" target="_blank">#跟我修電腦</a>
+          </div>
+        </div>
       </main>
 
       <%- include("../components/footer.ejs") %>
@@ -33,7 +46,8 @@
   </div>
   <script>
 
-    let strArr = ["電腦又故障了嗎？", "立即填寫報修單，幫您查看問題所在！"];
+    let strArr = [["電腦又故障了嗎？", "立即填寫報修單，幫您查看問題所在！"], ["故障的電腦困擾著您嗎？", "讓我們來修吧！", "信賴的電腦維修服務，讓您的生活更輕鬆！"], ["一個出色的電腦維修服務不僅僅是解決問題", "而是提供持久且可靠的解決方案", "我們的團隊將竭盡所能，為您的電腦帶來最佳的維護與修復"]];
+
 
     let div = document.querySelector(".gradually-text");
 
@@ -45,9 +59,10 @@
       })
     }
 
-    async function init() {
+    async function create(arr) {
       await delay(1000);
-      for (let i of strArr) {
+
+      for (let i of arr) {
         const p = document.createElement("p");
         div.appendChild(p);
         for (let j of i) {
@@ -56,16 +71,38 @@
           await delay(150);
         }
       }
+
+
+    }
+
+
+    function remove() {
+      let p_all = div.querySelectorAll("p")
+      p_all.forEach((i) => {
+        i.remove();
+      })
+
+    }
+
+    async function init() {
+      while (true) {
+        for (let i of strArr) {
+          await create(i);
+          await delay(1000);
+          await remove();
+        }
+
+
+      }
+
     }
     init();
+
+
+
+
+
   </script>
-
-
-  <!-- <script>
-    let logoHeight = document.querySelector(".logo").clientHeight;
-    let mainHeight = document.querySelector(".text-container").style.height = "100px";
-
-  </script> -->
 
 </body>
 

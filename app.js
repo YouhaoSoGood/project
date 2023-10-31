@@ -5,11 +5,18 @@ const bodyParser = require("body-parser"); //npm install body-parser
 const Repair = require("./models/repair");
 const Login = require("./models/login");
 const Convert = require("./models/convert");
+const session = require('express-session'); //npm install express-session
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.set("view engine", "ejs");
 app.use(express.static("public"));
+app.use(session({ 
+  secret: 'mykey',
+  resave: true,
+  saveUninitialized: true
+}));
+
 
 mongoose
   .connect("mongodb://127.0.0.1:27017/repair", {
@@ -25,8 +32,12 @@ mongoose
   });
 
 app.get("/manager", async (req, res) => {
-  let data = await Repair.find();
+  if (!req.session.loggedIn) { //檢查登入狀況
+    res.redirect("/login");
+    return;
+  }
 
+  let data = await Repair.find();
   data.forEach((item) => {
     item.stateText = Convert.state[item.state];
     item.stateArray = Convert.state;
@@ -93,6 +104,7 @@ app.post("/login", async (req, res) => {
     $and: [{ account: account }, { password: password }],
   });
   if (data.length !== 0) {
+    req.session.loggedIn = true; // 標記用戶已登入
     res.redirect("/manager");
   } else {
     res.redirect("/login?success=false&msg=帳號或密碼錯誤");

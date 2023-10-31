@@ -7,12 +7,10 @@
     justify-content: space-between;
     align-items: center;
 
-
     .logo {
         display: flex;
         align-items: center;
         background-color: rgba($color: #000000, $alpha: 0); // box-shadow: 3px 3px 5px 1px rgb(236, 137, 137);
-
 
         a {
             text-decoration: none;
@@ -145,7 +143,7 @@ footer {
             }
 
             .tc-gold {
-                color: rgb(219, 195, 56);
+                color: rgb(126, 17, 216);
             }
         }
     }

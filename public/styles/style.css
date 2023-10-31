@@ -398,6 +398,7 @@ table {
     color: black;
   }
 }
+body,
 html {
   scroll-behavior: smooth;
 }
@@ -422,24 +423,36 @@ html {
   -o-object-fit: cover;
      object-fit: cover;
 }
-.wrap-index main {
+.wrap-index .marquee {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
 }
-.wrap-index main .gradually-text {
+.wrap-index .marquee .gradually-text {
   color: white;
   font-size: 2rem;
 }
-.wrap-index main .gradually-text p {
+.wrap-index .marquee .gradually-text p {
   text-align: center;
   font-weight: bolder;
 }
-.wrap-index main .gradually-text p:last-child::after {
+.wrap-index .marquee .gradually-text p:last-child::after {
   content: "";
   border-right: 2px solid rgb(247, 230, 230);
   animation: blink 1s infinite;
+}
+.wrap-index main .container {
+  background-color: white;
+  padding: 1rem;
+  display: flex;
+}
+.wrap-index main .container .container-text {
+  margin: 1rem;
+}
+.wrap-index main .container .container-text a {
+  text-decoration: none;
+  color: red;
 }
 
 @keyframes blink {
@@ -572,5 +585,5 @@ footer .footer .footer-body .footer-body-section02 h2 {
   letter-spacing: 2px;
 }
 footer .footer .footer-body .tc-gold {
-  color: rgb(219, 195, 56);
+  color: rgb(126, 17, 216);
 }/*# sourceMappingURL=style.css.map */

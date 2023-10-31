@@ -35,16 +35,12 @@
                 padding: 1.25rem;
                 background-color: white;
                 color: rgb(0, 0, 0);
-
             }
         }
-
-
     }
 }
 
 @media print {
-
     video,
     table,
     button {
@@ -59,10 +55,7 @@
             td {
                 font-size: 25px;
                 color: rgb(255, 255, 255);
-
             }
-
-
         }
     }
 
