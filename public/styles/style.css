@@ -417,7 +417,8 @@ table {
 @media print {
   .table-data,
   video,
-  button {
+  button,
+  .data-state {
     display: none;
   }
   table {
