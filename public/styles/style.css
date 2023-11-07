@@ -206,20 +206,23 @@ table {
   border: none;
   text-align: center;
 }
-.repair .repair-body .radio-question {
-  color: white;
-}
-.repair .repair-body .radio-category {
+.repair .repair-body .radio-form {
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 }
-.repair .repair-body .radio-category div {
-  margin: 1rem;
+.repair .repair-body .radio-form .radio-category {
   color: white;
+  margin: 0.5rem;
 }
-.repair .repair-body .radio-category input {
-  transform: scale(1.5);
+.repair .repair-body .radio-form .radio-category input {
+  transform: scale(1.2);
+}
+.repair .repair-body .radio-form .radio-category label {
+  cursor: pointer;
+}
+.repair .repair-body .radio-quess {
+  color: white;
 }
 
 .wrap-inquire .background-video-inquire {

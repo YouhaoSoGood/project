@@ -96,24 +96,32 @@
 
 		}
 
-		.radio-question {
+		.radio-form {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+
+			.radio-category {
+				color: white;
+				margin: 0.5rem;
+
+				input {
+					transform: scale(1.2);
+				}
+
+				label {
+					cursor: pointer;
+
+				}
+			}
+		}
+
+		.radio-quess {
 			color: white;
 		}
 
-		.radio-category {
-			display: flex;
-			align-items: center;
-			justify-content: center;
 
-			div {
-				margin: 1rem;
-				color: white;
-			}
 
-			input {
-				transform: scale(1.5);
-			}
-		}
 
 
 

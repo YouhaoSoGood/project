@@ -22,58 +22,59 @@
     </div>
 
     <div class="repair-body">
-      <div class="radio-question">1.請問你的問題類別屬於?</div>
+      <div class="radio-quess">1.請問你的問題類別屬於?</div>
       <div class="radio-form">
-        <label for="radio">
-          <div class="radio-category">
-            <input type="radio" name="radio" id="radio">
-            <div>主機硬體相關</div>
-        </label>
+        <div class="radio-category">
+          <input type="radio" name="radio" id="radio1">
+          <label for="radio1">主機硬體相關</label>
+        </div>
 
+        <div class="radio-category">
+          <input type="radio" name="radio" id="radio2">
+          <label for="radio2">軟體程式相關</label>
+        </div>
 
-        <label for="radio">
-          <div class="radio-category">
-            <input type="radio" name="radio" id="radio">
-            <div>畫面異常、當機</div>
-          </div>
-        </label>
-
-        <label for="radio">
-          <div class="radio-category">
-            <input type="radio" name="radio" id="radio">
-            <div>軟體程式安裝</div>
-          </div>
-        </label>
+        <div class="radio-category">
+          <input type="radio" name="radio" id="radio3">
+          <label for="radio3">網路問題相關</label>
+        </div>
       </div>
+
+
+
+
+
+
+
 
       <div class="repair-main">
+        <div>
+          <label for="name">名字:</label>
+          <p><input type="text" id="name" name="name" /></p>
+        </div>
 
+        <div>
+          <label for="phone">電話:</label>
+          <p><input type="number" id="phone" name="phone" /></p>
+        </div>
+
+        <div>
+          <label for="unit">地址:</label>
+          <p><input type="text" id="unit" name="unit" /></p>
+        </div>
+
+        <div class="body-content">
+          <label for="content">故障內容:</label>
+          <p><textarea id="content" name="content"></textarea></p>
+        </div>
+
+        <div class="data-button">
+          <button onclick="pushdata()">傳送資料</button>
+        </div>
 
 
       </div>
-      <div>
-        <label for="name">名字:</label>
-        <p><input type="text" id="name" name="name" /></p>
-      </div>
 
-      <div>
-        <label for="phone">電話:</label>
-        <p><input type="number" id="phone" name="phone" /></p>
-      </div>
-
-      <div>
-        <label for="unit">地址:</label>
-        <p><input type="text" id="unit" name="unit" /></p>
-      </div>
-
-      <div class="body-content">
-        <label for="content">故障內容:</label>
-        <p><textarea id="content" name="content"></textarea></p>
-      </div>
-
-      <div class="data-button">
-        <button onclick="pushdata()">傳送資料</button>
-      </div>
     </div>
 
   </div>
