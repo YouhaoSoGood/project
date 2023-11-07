@@ -2,7 +2,6 @@
 	min-height: 100vh;
 	min-width: 100vh;
 
-
 	.background-video-repair {
 		height: 100vh;
 		width: 100%;
@@ -18,19 +17,14 @@
 		}
 	}
 
-
-	input[type=text],
-	input[type=number] {
+	input[type="text"],
+	input[type="number"] {
 		padding: 12px 5px;
 		margin: 8px 0;
 		box-sizing: border-box;
 		border: 1px solid #555;
 		outline: none;
 	}
-
-
-
-
 
 	.repair-body {
 		height: 100vh;
@@ -40,13 +34,10 @@
 		flex-direction: column;
 		background-color: #555;
 
-
 		.repair-main {
 			width: 300px;
 
-
 			p {
-
 				input,
 				textarea {
 					border-radius: 15px;
@@ -60,8 +51,6 @@
 			label {
 				font-size: 25px;
 				color: rgb(252, 252, 252);
-
-
 			}
 
 			textarea {
@@ -80,7 +69,6 @@
 				width: 100px;
 				height: 50px;
 
-
 				button {
 					border-radius: 20px;
 					width: 100%;
@@ -91,9 +79,6 @@
 					text-align: center;
 				}
 			}
-
-
-
 		}
 
 		.radio-form {
@@ -111,22 +96,16 @@
 
 				label {
 					cursor: pointer;
-
 				}
 			}
+		}
+
+		.radio-detailed {
+			display: none;
 		}
 
 		.radio-quess {
 			color: white;
 		}
-
-
-
-
-
-
 	}
-
-
-
 }

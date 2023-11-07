@@ -14,7 +14,7 @@
         }
     }
 
-    table {
+    .manager-table {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -24,6 +24,8 @@
 
         tr {
             border-bottom: 2px solid #000;
+            // display: block;
+            // width: 100%;
 
             .table-data {
                 background-color: rgba(0, 133, 88, 0.678);
@@ -35,33 +37,27 @@
                 padding: 1.25rem;
                 background-color: white;
                 color: rgb(0, 0, 0);
+
+                label {
+                    padding: 0.3rem;
+                    border-radius: 0.5rem;
+                    border: 1px solid gray;
+                    cursor: pointer;
+                }
             }
         }
+    }
+    input[name="radio-check"] {
+        display: none;
     }
 }
 
 @media print {
-
-    .table-data,
-    video,
-    button,
-    .data-state {
+    .show {
+        display: table-row;
+    }
+    tr,
+    video {
         display: none;
-    }
-
-    table {
-        border-collapse: collapse;
-        width: 100%;
-    }
-
-    th,
-    td {
-        border: 1px solid black;
-        text-align: left;
-        padding: 8px;
-    }
-
-    tr:nth-child(even) {
-        background-color: #ff0000;
     }
 }

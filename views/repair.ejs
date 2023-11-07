@@ -25,29 +25,65 @@
       <div class="radio-quess">1.請問你的問題類別屬於?</div>
       <div class="radio-form">
         <div class="radio-category">
-          <input type="radio" name="radio" id="radio1">
-          <label for="radio1">主機硬體相關</label>
+          <input type="radio" name="about" id="radio1" value="1" checked>
+          <label for="radio1" onclick="changpage(1)">硬體相關</label>
         </div>
 
         <div class="radio-category">
-          <input type="radio" name="radio" id="radio2">
-          <label for="radio2">軟體程式相關</label>
-        </div>
-
-        <div class="radio-category">
-          <input type="radio" name="radio" id="radio3">
-          <label for="radio3">網路問題相關</label>
+          <input type="radio" name="about" id="radio2" value="2">
+          <label for="radio2" onclick="changpage(2)">軟體相關</label>
         </div>
       </div>
 
+      <div class="radio-quess">2.更詳細的問題?</div>
+      <div class="radio-detailed">
+        <div class="radio-category">
+          <input type="radio" name="about-hard" id="radio1-1">
+          <label for="radio1-1">硬碟無法被偵測或儲存檔案錯誤</label>
+        </div>
+
+        <div class="radio-category">
+          <input type="radio" name="about-hard" id="radio1-2">
+          <label for="radio1-2">螢幕顯示問題，例如不亮或閃爍</label>
+        </div>
+
+        <div class="radio-category">
+          <input type="radio" name="about-hard" id="radio1-3">
+          <label for="radio1-3">鍵盤或滑鼠失靈或按鍵無反應</label>
+        </div>
+
+        <div class="radio-category">
+          <input type="radio" name="about-hard" id="radio1-4">
+          <label for="radio1-4">其他</label>
+        </div>
+      </div>
+
+      <div class="radio-detailed">
+        <div class="radio-category">
+          <input type="radio" name="about-hard" id="radio1-1">
+          <label for="radio1-1">程式無法使用</label>
+        </div>
+
+        <div class="radio-category">
+          <input type="radio" name="about-hard" id="radio1-2">
+          <label for="radio1-2">軟體錯誤異常</label>
+        </div>
+
+        <div class="radio-category">
+          <input type="radio" name="about-hard" id="radio1-3">
+          <label for="radio1-3">重灌需求</label>
+        </div>
+
+        <div class="radio-category">
+          <input type="radio" name="about-hard" id="radio1-4">
+          <label for="radio1-4">其他</label>
+        </div>
+      </div>
+
+      <button type="button" onclick="send()">下一步</button>
 
 
-
-
-
-
-
-      <div class="repair-main">
+      <!-- <div class="repair-main">
         <div>
           <label for="name">名字:</label>
           <p><input type="text" id="name" name="name" /></p>
@@ -71,9 +107,7 @@
         <div class="data-button">
           <button onclick="pushdata()">傳送資料</button>
         </div>
-
-
-      </div>
+      </div> -->
 
     </div>
 
@@ -86,6 +120,7 @@
   </div>
 
   <script>
+    //打API到後端app.js
     function pushdata() {
       let name = document.getElementById("name").value;
       let phone = document.getElementById("phone").value;
@@ -114,6 +149,25 @@
           console.error("發生錯誤:", error);
         });
     }
+
+    //打API
+    function send() {
+      let elemets = document.getElementsByName('about');
+      for (let i = 0; i < elemets.length; i++) {
+        if (elemets[i].checked) {
+          console.log(elemets[i].value);
+          break;
+        }
+      }
+    }
+
+    function changpage(value) {
+      console.log(value);
+    }
+
+
+
+
   </script>
 </body>
 

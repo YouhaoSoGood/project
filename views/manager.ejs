@@ -15,7 +15,7 @@
                 <source src="https://i.imgur.com/7CAzgsS.mp4" type="video/mp4" />
             </video>
         </div>
-        <table>
+        <table class="manager-table">
             <tr>
                 <td class="table-data">姓名</td>
                 <td class="table-data">電話</td>
@@ -26,8 +26,9 @@
                 <td class="table-data"></td>
             </tr>
 
-            <% data.forEach( item=>{ %>
-                <tr>
+            <% data.forEach( (item,index)=>{ %>
+                <tr class="content-data">
+                    <td style="display: none;"><input type="radio" name="radio-check" id="<%= item.id %>"></td>
                     <td class="data-name">
                         <%= item.name %>
                     </td>
@@ -53,7 +54,7 @@
                     <td><button onclick="del('<%= item.id %>')">刪除資料</button></td>
 
                     <td>
-                        <button onclick="window.print()">列印</button>
+                        <label for="<%= item.id %>" onclick="printshow('<%= item.id %>')">列印</label>
                     </td>
                 </tr>
                 <% }) %>
@@ -61,6 +62,7 @@
     </div>
 
     <script>
+        //刪除資料
         function del(id) {
             fetch("/repair", { method: "delete", body: { id } })
                 .then(response => response.json())
@@ -75,6 +77,7 @@
                 });
         }
 
+        //更新資料
         function updataState(selectState, id) {
             fetch("/manager/updataState", {
                 method: "post",
@@ -87,6 +90,23 @@
                 console.log(e);
             });
         }
+        //列印
+        function printshow(id) {
+            let content = document.querySelectorAll('.content-data');
+            for (let i = 0; i < content.length; i++) {
+                content[i].classList.remove('show');
+                console.log(content[i]);
+            }
+
+
+
+            let elemets = document.getElementById(id);
+
+            elemets.parentNode.parentNode.classList.add("show");
+
+            window.print();
+        }
+
     </script>
 </body>
 

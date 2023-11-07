@@ -221,6 +221,9 @@ table {
 .repair .repair-body .radio-form .radio-category label {
   cursor: pointer;
 }
+.repair .repair-body .radio-detailed {
+  display: none;
+}
 .repair .repair-body .radio-quess {
   color: white;
 }
@@ -392,7 +395,7 @@ table {
   -o-object-fit: cover;
      object-fit: cover;
 }
-.wrapManager table {
+.wrapManager .manager-table {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -400,39 +403,36 @@ table {
   height: 100vh;
   width: 100%;
 }
-.wrapManager table tr {
+.wrapManager .manager-table tr {
   border-bottom: 2px solid #000;
 }
-.wrapManager table tr .table-data {
+.wrapManager .manager-table tr .table-data {
   background-color: rgba(0, 133, 88, 0.678);
   color: white;
 }
-.wrapManager table tr td {
+.wrapManager .manager-table tr td {
   margin: 2rem;
   padding: 1.25rem;
   background-color: white;
   color: rgb(0, 0, 0);
 }
+.wrapManager .manager-table tr td label {
+  padding: 0.3rem;
+  border-radius: 0.5rem;
+  border: 1px solid gray;
+  cursor: pointer;
+}
+.wrapManager input[name=radio-check] {
+  display: none;
+}
 
 @media print {
-  .table-data,
-  video,
-  button,
-  .data-state {
+  .show {
+    display: table-row;
+  }
+  tr,
+  video {
     display: none;
-  }
-  table {
-    border-collapse: collapse;
-    width: 100%;
-  }
-  th,
-  td {
-    border: 1px solid black;
-    text-align: left;
-    padding: 8px;
-  }
-  tr:nth-child(even) {
-    background-color: #ff0000;
   }
 }
 body,
