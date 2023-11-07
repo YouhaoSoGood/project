@@ -13,7 +13,7 @@
   <div class="repair">
     <div class="background-video-repair">
       <video autoplay muted loop playsinline>
-        <source src="https://i.imgur.com/AkX7vRF.mp4" type="video/mp4" />
+        <!-- <source src="https://i.imgur.com/AkX7vRF.mp4" type="video/mp4" /> -->
       </video>
     </div>
 
@@ -22,37 +22,65 @@
     </div>
 
     <div class="repair-body">
-      <div class="repair-main">
-        <div>
-          <label for="name">名字:</label>
-          <p><input type="text" id="name" name="name" /></p>
-        </div>
+      <div class="radio-question">1.請問你的問題類別屬於?</div>
+      <div class="radio-form">
+        <label for="radio">
+          <div class="radio-category">
+            <input type="radio" name="radio" id="radio">
+            <div>主機硬體相關</div>
+        </label>
 
-        <div>
-          <label for="phone">電話:</label>
-          <p><input type="number" id="phone" name="phone" /></p>
-        </div>
 
-        <div>
-          <label for="unit">地址:</label>
-          <p><input type="text" id="unit" name="unit" /></p>
-        </div>
+        <label for="radio">
+          <div class="radio-category">
+            <input type="radio" name="radio" id="radio">
+            <div>畫面異常、當機</div>
+          </div>
+        </label>
 
-        <div class="body-content">
-          <label for="content">問題內容:</label>
-          <p><textarea id="content" name="content"></textarea></p>
-        </div>
-
-        <div class="data-button">
-          <button onclick="pushdata()">傳送資料</button>
-        </div>
+        <label for="radio">
+          <div class="radio-category">
+            <input type="radio" name="radio" id="radio">
+            <div>軟體程式安裝</div>
+          </div>
+        </label>
       </div>
 
+      <div class="repair-main">
+
+
+
+      </div>
+      <div>
+        <label for="name">名字:</label>
+        <p><input type="text" id="name" name="name" /></p>
+      </div>
+
+      <div>
+        <label for="phone">電話:</label>
+        <p><input type="number" id="phone" name="phone" /></p>
+      </div>
+
+      <div>
+        <label for="unit">地址:</label>
+        <p><input type="text" id="unit" name="unit" /></p>
+      </div>
+
+      <div class="body-content">
+        <label for="content">故障內容:</label>
+        <p><textarea id="content" name="content"></textarea></p>
+      </div>
+
+      <div class="data-button">
+        <button onclick="pushdata()">傳送資料</button>
+      </div>
     </div>
 
-    <div>
-      <%- include("../components/footer.ejs") %>
-    </div>
+  </div>
+
+  <div>
+    <%- include("../components/footer.ejs") %>
+  </div>
 
   </div>
 

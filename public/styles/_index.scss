@@ -37,6 +37,7 @@ html {
             p {
                 text-align: center;
                 font-weight: bolder;
+                word-wrap: break-word;
             }
 
             p:last-child {
@@ -52,16 +53,28 @@ html {
     main {
         .container {
             background-color: white;
-            padding: 1rem;
+            padding: 2rem;
             display: flex;
+            justify-content: center;
+            background-color: rgb(109, 95, 95);
 
             .container-text {
-                margin: 1rem;
+                width: 30%;
+                margin: 2rem;
+                word-wrap: break-word; //自動換行
+                font-weight: bold;
 
-                a {
-                    text-decoration: none;
-                    color: red;
+
+                p {
+                    letter-spacing: 5px;
+                    color: white;
+
+                    a {
+                        text-decoration: none;
+                        color: red;
+                    }
                 }
+
             }
         }
     }
