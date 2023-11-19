@@ -1,3 +1,7 @@
+html {
+	scroll-behavior: smooth;
+}
+
 .repair {
 	min-height: 100vh;
 	min-width: 100vh;
@@ -27,17 +31,11 @@
 	}
 
 	.repair-body {
-		height: 100vh;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		flex-direction: column;
-		background-color: #555;
-
 		.repair-main {
 			width: 300px;
 
 			p {
+
 				input,
 				textarea {
 					border-radius: 15px;
@@ -64,48 +62,109 @@
 				resize: none;
 			}
 
-			.data-button {
-				margin: 1rem 0rem;
-				width: 100px;
-				height: 50px;
 
-				button {
-					border-radius: 20px;
-					width: 100%;
-					height: 100%;
-					background-color: #725a5a;
-					color: white;
-					border: none;
-					text-align: center;
-				}
+		}
+
+		.data-button {
+			margin: 1rem 0rem;
+			width: 100px;
+			height: 50px;
+
+			button {
+				border-radius: 20px;
+				width: 100%;
+				height: 100%;
+				background-color: #725a5a;
+				color: white;
+				border: none;
+				text-align: center;
 			}
 		}
 
-		.radio-form {
+		.section {
+			height: 100vh;
 			display: flex;
 			justify-content: center;
 			align-items: center;
+			flex-direction: column;
+			background-color: #555;
 
-			.radio-category {
-				color: white;
-				margin: 0.5rem;
 
-				input {
-					transform: scale(1.2);
+
+			.radio-form {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				margin: 1.5rem;
+
+				.radio-category {
+					color: white;
+					margin: 0.3rem;
+
+					input {
+						transform: scale(1.2);
+					}
+
+					label {
+						cursor: pointer;
+						font-size: 20px;
+					}
 				}
+			}
+
+
+			.radio-detailed1,
+			.radio-detailed2 {
+				color: white;
+				display: flex;
+				margin: 1.5rem;
+
 
 				label {
 					cursor: pointer;
+					font-size: 20px;
+					margin: 0.5rem;
 				}
+			}
+
+
+
+			.radio-detailed2 {
+				display: none;
+
+			}
+
+			.radio-quess {
+				color: white;
+				transform: scale(2);
+				margin: 1rem;
+			}
+
+			.nextbutton {
+				margin: 2rem;
+				padding: 1rem 2rem;
+				border-radius: 25px;
+				border: none;
+				cursor: pointer;
+				border: 2px solid #ccc;
+			}
+
+			.nextbutton:hover {
+				background-color: #dd5757;
 			}
 		}
 
-		.radio-detailed {
-			display: none;
+
+		.slide {
+			position: absolute;
+			right: 0;
+			display: grid;
+
 		}
 
-		.radio-quess {
-			color: white;
-		}
+
+
 	}
+
+
 }

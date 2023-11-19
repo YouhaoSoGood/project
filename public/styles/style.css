@@ -134,6 +134,10 @@ table {
 
 /*主題色*/
 /*----------------------------------*/
+html {
+  scroll-behavior: smooth;
+}
+
 .repair {
   min-height: 100vh;
   min-width: 100vh;
@@ -160,14 +164,6 @@ table {
   border: 1px solid #555;
   outline: none;
 }
-.repair .repair-body {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  background-color: #555;
-}
 .repair .repair-body .repair-main {
   width: 300px;
 }
@@ -192,12 +188,12 @@ table {
   background-color: #f8f8f8;
   resize: none;
 }
-.repair .repair-body .repair-main .data-button {
+.repair .repair-body .data-button {
   margin: 1rem 0rem;
   width: 100px;
   height: 50px;
 }
-.repair .repair-body .repair-main .data-button button {
+.repair .repair-body .data-button button {
   border-radius: 20px;
   width: 100%;
   height: 100%;
@@ -206,26 +202,66 @@ table {
   border: none;
   text-align: center;
 }
-.repair .repair-body .radio-form {
+.repair .repair-body .section {
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  background-color: #555;
 }
-.repair .repair-body .radio-form .radio-category {
+.repair .repair-body .section .radio-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1.5rem;
+}
+.repair .repair-body .section .radio-form .radio-category {
   color: white;
-  margin: 0.5rem;
+  margin: 0.3rem;
 }
-.repair .repair-body .radio-form .radio-category input {
+.repair .repair-body .section .radio-form .radio-category input {
   transform: scale(1.2);
 }
-.repair .repair-body .radio-form .radio-category label {
+.repair .repair-body .section .radio-form .radio-category label {
   cursor: pointer;
+  font-size: 20px;
 }
-.repair .repair-body .radio-detailed {
+.repair .repair-body .section .radio-detailed1,
+.repair .repair-body .section .radio-detailed2 {
+  color: white;
+  display: flex;
+  margin: 1.5rem;
+}
+.repair .repair-body .section .radio-detailed1 label,
+.repair .repair-body .section .radio-detailed2 label {
+  cursor: pointer;
+  font-size: 20px;
+  margin: 0.5rem;
+}
+.repair .repair-body .section .radio-detailed2 {
   display: none;
 }
-.repair .repair-body .radio-quess {
+.repair .repair-body .section .radio-quess {
   color: white;
+  transform: scale(2);
+  margin: 1rem;
+}
+.repair .repair-body .section .nextbutton {
+  margin: 2rem;
+  padding: 1rem 2rem;
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+  border: 2px solid #ccc;
+}
+.repair .repair-body .section .nextbutton:hover {
+  background-color: #dd5757;
+}
+.repair .repair-body .slide {
+  position: absolute;
+  right: 0;
+  display: grid;
 }
 
 .wrap-inquire .background-video-inquire {
