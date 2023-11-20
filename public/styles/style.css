@@ -164,8 +164,12 @@ html {
   border: 1px solid #555;
   outline: none;
 }
-.repair .repair-body .repair-main {
-  width: 300px;
+.repair .repair-body {
+  background-color: #555;
+  overflow: hidden;
+  height: 100vh;
+  position: relative;
+  z-index: 0;
 }
 .repair .repair-body .repair-main p input,
 .repair .repair-body .repair-main p textarea {
@@ -208,7 +212,7 @@ html {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background-color: #555;
+  transition: all 1s ease;
 }
 .repair .repair-body .section .radio-form {
   display: flex;
@@ -258,10 +262,41 @@ html {
 .repair .repair-body .section .nextbutton:hover {
   background-color: #dd5757;
 }
+.repair .repair-body .scroll {
+  transform: translateY(-100%);
+}
 .repair .repair-body .slide {
   position: absolute;
   right: 0;
+  top: 50%;
+  z-index: 1;
   display: grid;
+}
+.repair .repair-body .slide input {
+  display: none;
+}
+.repair .repair-body .slide .radio-input {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgb(194, 194, 194);
+  border-radius: 50%;
+  margin: 0.3rem 0.5rem;
+  position: relative;
+}
+.repair .repair-body .slide .radio-input::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: rgb(255, 255, 255);
+  opacity: 0;
+}
+.repair .repair-body .slide input:checked ~ .radio-input::after {
+  opacity: 1;
 }
 
 .wrap-inquire .background-video-inquire {
@@ -458,6 +493,20 @@ html {
   border: 1px solid gray;
   cursor: pointer;
 }
+.wrapManager .newprint {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(255, 255, 255);
+  height: 100vh;
+}
+.wrapManager .newprint div {
+  width: 250px;
+  height: 150px;
+  background-color: #9c5252;
+  margin: 0rem 1rem;
+  border: 2px solid bisque;
+}
 .wrapManager input[name=radio-check] {
   display: none;
 }
@@ -467,7 +516,8 @@ html {
     display: table-row;
   }
   tr,
-  video {
+  video,
+  .data-state {
     display: none;
   }
 }
@@ -558,6 +608,7 @@ html {
   justify-content: space-between;
   align-items: center;
   transition: all 0.3s ease;
+  z-index: 1;
 }
 .header .logo {
   display: flex;

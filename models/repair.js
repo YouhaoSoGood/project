@@ -8,7 +8,7 @@ const repairSchema = new mongoose.Schema({
   phone: {
     type: String,
     required: true,
-    minLength: 10,
+    maxLength: 10,
   },
   unit: {
     type: String,

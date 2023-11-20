@@ -47,6 +47,23 @@
             }
         }
     }
+
+    .newprint {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: rgb(255, 255, 255);
+        height: 100vh;
+
+        div {
+            width: 250px;
+            height: 150px;
+            background-color: #9c5252;
+            margin: 0rem 1rem;
+            border: 2px solid bisque;
+        }
+    }
+
     input[name="radio-check"] {
         display: none;
     }
@@ -57,7 +74,8 @@
         display: table-row;
     }
     tr,
-    video {
+    video,
+    .data-state {
         display: none;
     }
 }

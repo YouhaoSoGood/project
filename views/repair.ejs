@@ -22,17 +22,16 @@
     </div>
 
     <div class="repair-body">
-
       <div class="section" id="section01">
         <div class="radio-quess">1.請問你的問題類別屬於?</div>
         <div class="radio-form">
           <div class="radio-category">
-            <input type="radio" name="about" id="radio1" value="1" checked>
+            <input type="radio" name="about" id="radio1" value="硬體相關" checked>
             <label for="radio1" onclick="changpage(1)">硬體相關</label>
           </div>
 
           <div class="radio-category">
-            <input type="radio" name="about" id="radio2" value="2">
+            <input type="radio" name="about" id="radio2" value="軟體相關">
             <label for="radio2" onclick="changpage(2)">軟體相關</label>
           </div>
         </div>
@@ -40,44 +39,44 @@
         <div class="radio-quess">2.更詳細的問題?</div>
         <div class="radio-detailed1">
           <div class="radio-category">
-            <input type="radio" name="about-hard" id="radio1-1" checked onclick="handleOther()">
+            <input type="radio" name="about-hard" id="radio1-1" value="硬碟無法被偵測或儲存檔案錯誤" checked onclick="handleOther()">
             <label for="radio1-1">硬碟無法被偵測或儲存檔案錯誤</label>
           </div>
 
           <div class="radio-category">
-            <input type="radio" name="about-hard" id="radio1-2" onclick="handleOther()">
+            <input type="radio" name="about-hard" id="radio1-2" value="螢幕顯示問題例如不亮或閃爍" onclick="handleOther()">
             <label for="radio1-2">螢幕顯示問題例如不亮或閃爍</label>
           </div>
 
           <div class="radio-category">
-            <input type="radio" name="about-hard" id="radio1-3" onclick="handleOther()">
+            <input type="radio" name="about-hard" id="radio1-3" value="鍵盤或滑鼠失靈或按鍵無反應" onclick="handleOther()">
             <label for="radio1-3">鍵盤或滑鼠失靈或按鍵無反應</label>
           </div>
 
           <div class="radio-category">
-            <input type="radio" name="about-hard" id="radio1-4" onclick="handleOther()">
+            <input type="radio" name="about-hard" id="radio1-4" value="" onclick="handleOther()">
             <label for="radio1-4">其他</label>
           </div>
         </div>
 
         <div class="radio-detailed2">
           <div class="radio-category">
-            <input type="radio" name="about-Software" id="radio2-1" checked onclick="handleOther()">
+            <input type="radio" name="about-Software" id="radio2-1" value="程式無法使用" checked onclick="handleOther()">
             <label for="radio2-1">程式無法使用</label>
           </div>
 
           <div class="radio-category">
-            <input type="radio" name="about-Software" id="radio2-2" onclick="handleOther()">
+            <input type="radio" name="about-Software" id="radio2-2" value="軟體錯誤異常" onclick="handleOther()">
             <label for="radio2-2">軟體錯誤異常</label>
           </div>
 
           <div class="radio-category">
-            <input type="radio" name="about-Software" id="radio2-3" onclick="handleOther()">
+            <input type="radio" name="about-Software" id="radio2-3" value="重灌需求" onclick="handleOther()">
             <label for="radio2-3">重灌需求</label>
           </div>
 
           <div class="radio-category">
-            <input type="radio" name="about-Software" id="radio2-4" onclick="handleOther()">
+            <input type="radio" name="about-Software" id="radio2-4" value="" onclick="handleOther()">
             <label for="radio2-4">其他</label>
           </div>
         </div>
@@ -91,15 +90,23 @@
 
         <button class="nextbutton" type="button" onclick="scrollToNext()">下一步</button>
 
-        <div class="slide">
-          <input type="radio" name="slides" id="slide01" checked>
-          <input type="radio" name="slides" id="slide02">
-        </div>
       </div>
 
+      <div class="slide" onclick="event.preventDefault()">
+        <div>
+          <input type="radio" name="slides" id="slide01" checked>
+          <div class="radio-input"></div>
+        </div>
+        <div>
+          <input type="radio" name="slides" id="slide02">
+          <div class="radio-input"></div>
+        </div>
 
 
-      <div class="section" id="section02" style="display: none;">
+
+      </div>
+
+      <div class="section" id="section02">
         <div class="repair-main">
           <div>
             <label for="name">名字:</label>
@@ -122,18 +129,9 @@
         </div>
 
 
-
-
-
-
-
-
-
       </div>
-
-
-
     </div>
+
 
   </div>
 
@@ -146,13 +144,53 @@
   <script>
     //打API到後端app.js
     function pushdata() {
-      let name = document.getElementById("name").value;
-      let phone = document.getElementById("phone").value;
-      let unit = document.getElementById("unit").value;
-      let content = document.getElementById("content").value;
+      const name = document.getElementById("name").value;
+      const phone = document.getElementById("phone").value;
+      const unit = document.getElementById("unit").value;
+
+      //將相關資料加入字串傳入資料庫
+      const about = document.getElementsByName("about");
+      const abouthard = document.getElementsByName("about-hard");
+      const aboutSoftware = document.getElementsByName("about-Software");
+      let str = "";
+      for (let i = 0; i < about.length; i++) {
+        if (about[i].checked) {
+          if (about[i].value != "") {
+            str += about[i].value + " ";
+          } else {
+            const content = document.getElementById("content").value;
+            str += content + " ";
+          }
+        }
+      }
+
+      for (let i = 0; i < abouthard.length; i++) {
+        if (abouthard[i].checked) {
+          if (abouthard[i].value != "") {
+            str += abouthard[i].value + " ";
+          } else {
+            const content = document.getElementById("content").value;
+            str += content + " ";
+          }
+        }
+      }
+
+      for (let i = 0; i < aboutSoftware.length; i++) {
+        if (aboutSoftware[i].checked) {
+          if (aboutSoftware[i].value != "") {
+            str += aboutSoftware[i].value + " ";
+          } else {
+            const content = document.getElementById("content").value;
+            str += content + " ";
+          }
+        }
+      }
+
+
+
       fetch("/repair", {
         method: "post",
-        body: JSON.stringify({ name, phone, unit, content }),
+        body: JSON.stringify({ name, phone, unit, content: str }),
         headers: { "Content-Type": "application/json" },
       })
         .then((response) => response.json())
@@ -203,13 +241,14 @@
         slide01.checked = true;
       }
 
-      const section01 = document.querySelector('#section01');
-      const section02 = document.querySelector('#section02');
-      const slide = document.querySelector('.slide');
 
-      slide.style.display = 'grid';
-      section01.style.display = 'none';
-      section02.style.display = 'flex';
+      const section = document.querySelectorAll('.section');
+
+      for (let i = 0; i < section.length; i++) {
+        section[i].classList.add('scroll');
+      }
+
+
 
 
 
@@ -253,8 +292,8 @@
         handleother.style.display = 'none';
       }
 
-
     }
+
 
     changpage(1);
   </script>
