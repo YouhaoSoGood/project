@@ -140,33 +140,35 @@ $color3: #1ecfd6;
 $color4: #edd170;
 $color5: #c05640;
 
-/*----------------------------------*/
-// .title {
-// 	background-color: bisque;
-// 	display: flex;
+.topmost-layer {
+	position: fixed;
+	right: 0;
+	bottom: 0;
 
-// 	/*justify-content: space-between; /* 均匀排列每個元素首個元素放置於起点，末尾元素放置於终点 */
-// 	a {
-// 		justify-content: center;
-// 		text-decoration: none;
-// 		right: 0;
-// 		position: absolute;
-// 		font-size: 50px;
-// 	}
-// }
+	a {
+		text-decoration: none;
 
-// h1 {
-// 	font-size: 50px;
-// }
-
-// li {
-// 	font-size: 50px;
-// 	text-align: center;
-// 	/*置中*/
-
-// }
+		div {
+			width: 80px;
+			height: 80px;
+			border-radius: 50%;
+			background-color: antiquewhite;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
 
 
+			font-family: 'Indie Flower', cursive;
+			font-family: 'Noto Sans TC', sans-serif;
+
+			img {
+				width: 25px;
+				height: 25px;
+			}
+		}
+	}
+}
 
 @import "repair.scss";
 @import "inquire.scss";

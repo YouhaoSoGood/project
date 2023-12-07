@@ -8,6 +8,8 @@
     align-items: center;
     transition: all 0.3s ease;
     z-index: 1;
+
+
     .logo {
         display: flex;
         align-items: center;
@@ -20,6 +22,8 @@
             h1 {
                 margin: 0.5rem;
                 font-size: 50px;
+                font-family: 'Indie Flower', cursive;
+                font-family: 'Noto Sans TC', sans-serif;
             }
         }
     }
@@ -38,13 +42,17 @@
                     text-decoration: none;
                     color: white;
                     font-size: 25px;
-                    padding: 1rem;
+                    padding: 1.5rem;
                     transition: all 0.3s ease;
                     display: block;
+                    font-family: 'Indie Flower', cursive;
+                    font-family: 'Noto Sans TC', sans-serif;
                 }
 
                 a:hover {
                     transform: scale(1.1);
+                    color: red;
+                    border-bottom: solid #FFFFFF 1px;
                 }
             }
         }
@@ -83,7 +91,7 @@ footer {
                 display: flex;
                 align-items: center;
 
-                a {
+                p {
                     text-decoration: none;
                     color: #000000;
                 }
@@ -131,7 +139,14 @@ footer {
 
                     .contact-info {
                         display: grid;
-                        grid-template-columns: 100px 100px;
+                        grid-template-columns: 100px 200px;
+                        align-items: center;
+
+
+
+                        div {
+                            margin: 1rem 0rem;
+                        }
                     }
                 }
             }
@@ -140,7 +155,7 @@ footer {
                 width: 50%;
 
                 h2 {
-                    font-size: 20px;
+                    font-size: 1.5rem;
                     font-weight: bold;
                     margin: 2rem 0rem;
                     letter-spacing: 2px;

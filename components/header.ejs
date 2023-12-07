@@ -1,5 +1,13 @@
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Noto+Sans+TC&display=swap"
+        rel="stylesheet">
+
+</head>
+
 <div id="aa"></div>
-<div class="header">
+<div class="header" style="display: none;">
     <div class="logo">
         <img src="https://i.imgur.com/zYHDUPx.png" width="50px" height="50px" />
         <a href="/">
@@ -20,12 +28,19 @@
 
     function scrollFunction() {
         var header = document.querySelector('.header');
+
         if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+            header.style.display = "flex";
             header.style.boxShadow = '3px 3px 5px 1px rgb(0, 0, 0)';
             header.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+            header.style.transition = 'top 0.3 ease';
+            header.style.top = '0';
+
         } else {
             header.style.boxShadow = 'none';
             header.style.backgroundColor = 'transparent';
+            header.style.transition = 'top 0.3s ease';
+            header.style.top = '-80%'; // 隱藏起來
         }
     }
 </script>

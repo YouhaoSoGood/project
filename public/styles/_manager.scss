@@ -11,6 +11,7 @@
             height: 100%;
             width: 100%;
             object-fit: cover; //填滿
+
         }
     }
 
@@ -49,18 +50,36 @@
     }
 
     .newprint {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
         background-color: rgb(255, 255, 255);
         height: 100vh;
 
-        div {
-            width: 250px;
-            height: 150px;
-            background-color: #9c5252;
-            margin: 0rem 1rem;
-            border: 2px solid bisque;
+        .print-data {
+            display: flex;
+            justify-content: center;
+
+            div {
+                height: 200px;
+                border: 1px solid rgb(31, 31, 31);
+                display: flex;
+                flex: 1;
+
+                p {
+                    font-size: 3rem;
+                }
+            }
+        }
+
+        // div {
+
+
+
+
+
+        // }
+
+        .printcontent {
+            width: 100%;
+
         }
     }
 
@@ -73,6 +92,7 @@
     .show {
         display: table-row;
     }
+
     tr,
     video,
     .data-state {

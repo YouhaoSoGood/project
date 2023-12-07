@@ -8,9 +8,18 @@
   <link rel="stylesheet" href="../styles/style.css" />
   <title>報修網站</title>
 
+  <!-- google-font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&family=Roboto&display=swap" rel="stylesheet">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Noto+Sans+TC&display=swap" rel="stylesheet">
 
 </head>
 
@@ -21,6 +30,7 @@
         <source src="https://i.imgur.com/6Uc3TAS.mp4" type="video/mp4" />
       </video>
     </div>
+    <div class="background-layer"></div>
 
     <%- include("../components/header.ejs") %>
 
@@ -29,7 +39,7 @@
       </div>
 
       <main>
-        <div class="container">
+        <div class="container01">
           <div class="container-video">
             <iframe width="560" height="315" src="https://www.youtube.com/embed/iT_BCzcuF2g?si=FthxhYqrLv-Xz-N1"
               title="YouTube video player" frameborder="0"
@@ -38,16 +48,34 @@
           </div>
 
           <div class="container-text">
+            <h1>簡單的故障排除?</h1>
             <p>
               在這段教學影片中，我們使用一台測試主機，以實際操作示範方式教導觀眾如何有效地進行電腦故障排除。透過清晰的解說和操作示範，讓觀眾能夠熟悉並掌握解決電腦常見問題的方法，提升他們的電腦維修技能。這段影片可於Youtube頻道
               <a href="https://www.youtube.com/@allenhaw" target="_blank">#跟我修電腦</a> 中找到
             </p>
+          </div>
+        </div>
 
+        <div class="container02">
+
+          <div>
+            <h1>如何填寫報修單?</h1>
+            <img src="" alt="">
           </div>
         </div>
       </main>
 
       <%- include("../components/footer.ejs") %>
+
+
+        <div class="topmost-layer">
+          <a href="#aa">
+            <div>
+              <img src="../img/iconscroll.png" alt="回最上層">
+              TOP
+            </div>
+          </a>
+        </div>
 
   </div>
   <script>
@@ -72,7 +100,6 @@
         const p = document.createElement("p");
         div.appendChild(p);
         for (let j of i) {
-          console.log(j);
           p.textContent += j;
           await delay(150);
         }
