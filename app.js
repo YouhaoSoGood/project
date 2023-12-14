@@ -5,18 +5,26 @@ const bodyParser = require("body-parser"); //npm install body-parser
 const Repair = require("./models/repair");
 const Login = require("./models/login");
 const Convert = require("./models/convert");
-const session = require('express-session'); //npm install express-session
+const session = require("express-session"); //npm install express-session
+
+const dotenv = require("dotenv"); //npm install dotenv
+dotenv.config();
+const authRoute = require("./routes/auth-route");
+require("./config/passport");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.set("view engine", "ejs");
 app.use(express.static("public"));
-app.use(session({ 
-  secret: 'mykey',
-  resave: true,
-  saveUninitialized: true
-}));
+app.use(
+  session({
+    secret: "mykey",
+    resave: true,
+    saveUninitialized: true,
+  })
+);
 
+app.use("/login/auth", authRoute);
 
 mongoose
   .connect("mongodb://127.0.0.1:27017/repair", {
@@ -32,7 +40,8 @@ mongoose
   });
 
 app.get("/manager", async (req, res) => {
-  if (!req.session.loggedIn) { //檢查登入狀況
+  if (!req.session.loggedIn) {
+    //檢查登入狀況
     res.redirect("/login");
     return;
   }
