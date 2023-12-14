@@ -24,7 +24,7 @@ app.use(
   })
 );
 
-app.use("/login/auth", authRoute);
+app.use("/auth", authRoute);
 
 mongoose
   .connect("mongodb://127.0.0.1:27017/repair", {
