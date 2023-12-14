@@ -30,39 +30,35 @@ html {
 		outline: none;
 	}
 
+	.report-warning {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		background-color: #888;
+
+		p,
+		h1 {
+			color: rgb(250, 234, 205);
+			font-size: 25px;
+
+			a {
+				text-decoration: none;
+				color: rgb(212, 73, 55);
+			}
+		}
+
+		h1 {
+			font-size: 3rem;
+			font-weight: bolder;
+			margin: 1rem 0rem;
+		}
+	}
+
 	.repair-body {
 		display: flex;
 		background-color: #555;
 		overflow-x: hidden;
 		height: 100vh;
-
-		.report-warning {
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			position: absolute;
-			left: 35%;
-			top: 5%;
-			z-index: 1;
-
-			p,
-			h1 {
-				color: rgb(250, 234, 205);
-				font-size: 25px;
-
-				a {
-					text-decoration: none;
-					color: rgb(212, 73, 55);
-				}
-			}
-
-			h1 {
-				font-size: 3rem;
-				font-weight: bolder;
-				margin: 1rem 0rem;
-			}
-		}
-
 
 		.repair-main,
 		.repair-main-input {
@@ -70,7 +66,6 @@ html {
 			margin: 0rem 1.5rem;
 
 			p {
-
 				input,
 				textarea {
 					border-radius: 15px;
@@ -105,7 +100,6 @@ html {
 			top: 50%;
 			right: 20%;
 			width: 20%;
-
 		}
 
 		.data-button {
@@ -129,18 +123,16 @@ html {
 			}
 		}
 
-
 		.section {
 			height: 100vh;
 			display: flex;
 			justify-content: center;
-			flex-direction: column;
+			// flex-direction: column;
 			transition: all 1s ease;
 			position: relative;
 			min-width: 100%;
 
 			.radio-quess {
-
 				h1 {
 					color: rgb(255, 255, 255);
 					font-size: 3rem;
@@ -155,7 +147,6 @@ html {
 						color: white;
 						margin: 0.3rem;
 
-
 						input {
 							transform: scale(1.2);
 							margin: 0.8rem;
@@ -164,7 +155,6 @@ html {
 						label {
 							cursor: pointer;
 							font-size: 20px;
-
 						}
 					}
 				}
@@ -186,7 +176,6 @@ html {
 					}
 				}
 
-
 				.nextbutton {
 					margin: 2rem;
 					padding: 1rem 2rem;
@@ -199,18 +188,14 @@ html {
 
 				.nextbutton:hover {
 					background-color: #ff7f7f;
-
 				}
-
 			}
-
 		}
 
 		#section01 {
 			display: flex;
 			justify-content: center;
 			align-items: center;
-
 		}
 
 		#section02 {
@@ -238,8 +223,6 @@ html {
 				}
 			}
 		}
-
-
 
 		.scroll {
 			transform: translateX(-100%);
@@ -278,7 +261,7 @@ html {
 				opacity: 0;
 			}
 
-			input:checked~.radio-input::after {
+			input:checked ~ .radio-input::after {
 				opacity: 1;
 			}
 		}
@@ -327,8 +310,4 @@ html {
 			}
 		}
 	}
-
-
-
-
 }

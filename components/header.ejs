@@ -4,23 +4,32 @@
     <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Noto+Sans+TC&display=swap"
         rel="stylesheet">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
 <div id="aa"></div>
-<div class="header" style="display: none;">
+
+<div class="header">
     <div class="logo">
-        <img src="https://i.imgur.com/zYHDUPx.png" width="50px" height="50px" />
+        <img src="https://i.imgur.com/zYHDUPx.png" width="32px" height="32px" />
         <a href="/">
             <h1>維修System</h1>
         </a>
     </div>
-
     <div class="menu">
         <ul>
             <li><a href="/repair">申請報修</a></li>
             <li><a href="/inquire">叫修查詢</a></li>
         </ul>
     </div>
+
+</div>
+<div class="topmost-layer">
+    <a href="#aa">
+        <div>
+            <span><i class="fa-solid fa-angles-up"></i></span>
+        </div>
+    </a>
 </div>
 
 <script>
@@ -30,7 +39,7 @@
         var header = document.querySelector('.header');
 
         if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
-            header.style.display = "flex";
+            header.style.transform = "translateY(0)";
             header.style.boxShadow = '3px 3px 5px 1px rgb(0, 0, 0)';
             header.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
             header.style.transition = 'top 0.3 ease';

@@ -39,6 +39,10 @@ mongoose
     console.log(e);
   });
 
+app.get("/auth/google/redirect",(req,res)=>{
+  console.log(req.body);
+})
+
 app.get("/manager", async (req, res) => {
   if (!req.session.loggedIn) {
     //檢查登入狀況

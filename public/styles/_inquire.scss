@@ -1,4 +1,6 @@
 .wrap-inquire {
+	position: relative;
+
 	.background-video-inquire {
 		height: 100vh;
 		width: 100%;
@@ -22,8 +24,6 @@
 		height: 100vh;
 		width: 100%;
 
-
-
 		tr {
 			border-bottom: 2px solid #000;
 
@@ -37,11 +37,7 @@
 				padding: 1.25rem;
 				background-color: white;
 				color: rgb(0, 0, 0);
-
 			}
 		}
-
-
 	}
-
 }

@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../styles/style.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <title>login</title>
 </head>
 
@@ -16,14 +18,19 @@
                 <source src="https://i.imgur.com/T1Sj9hR.mp4" type="video/mp4" />
             </video>
         </div>
+        <div class="background-layer"></div>
         <form action="/login" method="post" class="login">
             <div class="login-item">
-                <input type="text" name="account" id="account" required placeholder>
-                <label for="account">帳號</label>
+                <h1>管理者登入</h1>
             </div>
             <div class="login-item">
-                <input type="password" name="password" id="password" required placeholder>
-                <label for="password">密碼</label>
+                <span class="loginicon"><i class="fa-solid fa-user"></i></span>
+                <input type="text" name="account" id="account" required placeholder="帳號">
+
+            </div>
+            <div class="login-item">
+                <span class="loginicon"><i class="fa-solid fa-lock"></i></span>
+                <input type="password" name="password" id="password" required placeholder="密碼">
             </div>
             <div class="login-item">
                 <button>登入</button>
@@ -31,42 +38,26 @@
             <div class="login-google">
                 <a href="/auth/google">
                     <img src="https://img.icons8.com/color/16/000000/google-logo.png" />
-                    Login With Google
+                    Google登入
                 </a>
             </div>
 
         </form>
 
-        <form action="/auth/login" method="POST">
-
-            <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                    placeholder="Enter email" name="username" />
-                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
-                    else.</small>
-            </div>
-            <br />
-            <div class="form-group">
-                <label for="exampleInputPassword1">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"
-                    name="password" />
-            </div>
-            <br />
-            <button class="btn btn-primary">Submit</button>
-
-        </form>
-
-        <div class="prompt">
-            <p class="prompt-title">錯誤提示</p>
-            <p id="msg"></p>
-            <a class="prompt-sumbit" href="/login">確認</a>
-        </div>
-
-
-
-
     </div>
+
+    <div class="prompt-layer">
+        <div class="prompt">
+            <div class="prompt-title">
+                <p>錯誤提示</p>
+                <p id="msg"></p>
+            </div>
+
+            <a class="prompt-sumbit" href="/login"><span>重試</span></a>
+        </div>
+    </div>
+
+    <div class="background-layer"></div>
 
     <script>
         const urlParams = new URLSearchParams(window.location.search);
@@ -75,7 +66,7 @@
 
         if (sec === "false") {
             document.getElementById("msg").textContent = msg;
-            document.querySelector(".prompt").style.display = "flex";
+            document.querySelector(".prompt-layer").style.display = "flex";
         }
     </script>
 

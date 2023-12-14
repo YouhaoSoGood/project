@@ -22,7 +22,7 @@
 	}
 
 	.login {
-		background-image: linear-gradient(to left, $color3, $color2);
+		background-image: linear-gradient(to left, rgba($color1, 0.4), rgba($color5, 0.4));
 		border-radius: 0.5rem;
 		min-height: 300px;
 		min-width: 300px;
@@ -35,63 +35,88 @@
 			display: flex;
 			flex-direction: column;
 			position: relative;
-			margin: 1.5rem;
+			margin: 1rem;
 			width: 80%;
+
+			h1 {
+				margin: 0 auto;
+				color: white;
+			}
 
 			button {
 				background-color: black;
 				color: white;
+				border-radius: 3rem;
+				border: 1px solid rgb(255, 255, 255);
+				padding: 0.5rem;
+				background-color: rgba($color: #000000, $alpha: 0.2);
+				cursor: pointer;
+				width: 100%;
+				margin: 0 auto;
 			}
 
 			label {
 				position: absolute;
 				top: 50%;
-				left: 0.2rem;
+				left: 0.5rem;
 				padding: 0rem 0.3rem;
 				transform: translateY(-50%);
-				transition: all .3s;
-				background-color: white;
+				transition: all 0.3s;
+				color: white;
 				border-top-left-radius: 0.3rem;
 				border-top-right-radius: 0.3rem;
+				font-size: 0.8rem;
+			}
+
+			.loginicon {
+				position: absolute;
+				top: 0.7rem;
+				left: 0.7rem;
+				color: rgb(219, 219, 219);
+				font-size: 0.8rem;
 			}
 
 			input {
-				border-radius: 0.3rem;
-				border: 1px solid;
+				border-radius: 3rem;
+				border: 1px solid rgb(255, 255, 255);
 				padding: 0.5rem;
-
-
-				&:focus {
-					outline: none;
-					border-top-left-radius: 0;
+				background-color: rgba($color: #000000, $alpha: 0.2);
+				outline: none;
+				padding-left: 1.8rem;
+				color: white;
+				&::placeholder {
+					color: white;
 				}
+				// &:focus {
+				// 	outline: none;
+				// 	border-top-left-radius: 0;
+				// }
 
-				&:not(:placeholder-shown) {
-					outline: none;
-					border-top-left-radius: none;
-				}
-
+				// &:not(:placeholder-shown) {
+				// 	outline: none;
+				// 	border-top-left-radius: none;
+				// }
 			}
 
-			input:focus~label {
-				top: -25%;
-				font-size: 0.8rem;
-				border-left: 1px solid black;
-				border-top: 1px solid black;
-				border-right: 1px solid black;
-				padding: 0.3rem 0.3rem;
-				left: 0rem;
-			}
+			// input:focus ~ label {
+			// 	top: -25%;
+			// 	font-size: 0.8rem;
+			// 	border-left: 1px solid black;
+			// 	border-top: 1px solid black;
+			// 	border-right: 1px solid black;
+			// 	padding: 0.3rem 0.3rem;
+			// 	left: 0rem;
+			// }
 
-			input:not(:placeholder-shown)~label {
-				top: -15%;
-				font-size: 0.8rem;
-				border-left: 1px solid black;
-				border-top: 1px solid black;
-				border-right: 1px solid black;
-				padding: 0.3rem 0.3rem;
-				left: 0;
-			}
+			// input:not(:placeholder-shown) ~ label {
+			// 	top: -15%;
+			// 	font-size: 0.8rem;
+			// 	border-left: 1px solid black;
+			// 	border-top: 1px solid black;
+			// 	border-right: 1px solid black;
+			// 	padding: 0.3rem 0.3rem;
+			// 	left: 0;
+			// }
 		}
 
 		.login-google {
@@ -105,40 +130,58 @@
 					margin: 0rem 0.5rem;
 				}
 			}
-
 		}
 	}
+}
 
-
+.prompt-layer {
+	position: fixed;
+	width: 100%;
+	height: 100vh;
+	left: 0;
+	top: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	display: none;
 
 	.prompt {
-		width: 200px;
-		height: 100px;
-		background-color: #f5f5f5;
-		position: fixed;
+		background-color: rgba($color: rgb(255, 255, 255), $alpha: 0.8);
 		border-radius: 0.5rem;
-		border: 1px solid black;
-		display: none;
+		display: flex;
 		align-items: center;
 		justify-content: center;
 		flex-direction: column;
-		padding: 0.7rem;
-
+		box-shadow: 2px 2px 5px 2px black;
 
 		.prompt-title {
-			margin-bottom: 1rem;
 			font-size: 15px;
+			padding: 0.5rem 1rem;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-direction: column;
+			p {
+				margin: 0.3rem 0rem;
+				font-size: 0.9rem;
+				color: rgb(37, 37, 37);
+			}
 		}
 
 		.prompt-sumbit {
-			margin-top: 1rem;
-			padding: 0.5rem;
+			border-top: gray 1px solid;
 			text-decoration: none;
-			color: white;
-			// background-color: $color5;
+			color: rgb(0, 0, 0);
+			width: 90%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			padding: 0.5rem 0rem;
 
+			span {
+				font-size: 0.8rem;
+				color: rgb(104, 104, 104);
+			}
 		}
-
 	}
-
 }

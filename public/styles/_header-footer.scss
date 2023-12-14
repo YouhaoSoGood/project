@@ -8,22 +8,22 @@
     align-items: center;
     transition: all 0.3s ease;
     z-index: 1;
-
+    transform: translateY(-100%);
 
     .logo {
         display: flex;
         align-items: center;
         background-color: rgba($color: #000000, $alpha: 0);
-
+        padding-left: 0.5rem;
         a {
             text-decoration: none;
             color: white;
 
             h1 {
                 margin: 0.5rem;
-                font-size: 50px;
-                font-family: 'Indie Flower', cursive;
-                font-family: 'Noto Sans TC', sans-serif;
+                font-size: 1.5rem;
+                font-family: "Indie Flower", cursive;
+                font-family: "Noto Sans TC", sans-serif;
             }
         }
     }
@@ -40,19 +40,19 @@
 
                 a {
                     text-decoration: none;
-                    color: white;
-                    font-size: 25px;
+                    color: rgb(192, 192, 192);
+                    font-size: 1rem;
                     padding: 1.5rem;
                     transition: all 0.3s ease;
                     display: block;
-                    font-family: 'Indie Flower', cursive;
-                    font-family: 'Noto Sans TC', sans-serif;
+                    font-family: "Indie Flower", cursive;
+                    font-family: "Noto Sans TC", sans-serif;
                 }
 
                 a:hover {
                     transform: scale(1.1);
-                    color: red;
-                    border-bottom: solid #FFFFFF 1px;
+                    color: white;
+                    border-bottom: solid #ffffff 1px;
                 }
             }
         }
@@ -124,7 +124,6 @@ footer {
             width: 80%;
             display: flex;
             justify-content: space-between;
-            margin-top: 1rem;
 
             .footer-body-section01 {
                 .footer-body-ContactInformation {
@@ -139,13 +138,11 @@ footer {
 
                     .contact-info {
                         display: grid;
-                        grid-template-columns: 100px 200px;
+                        grid-template-columns: 50px 200px;
                         align-items: center;
 
-
-
-                        div {
-                            margin: 1rem 0rem;
+                        span {
+                            color: rgb(161, 153, 153);
                         }
                     }
                 }
@@ -157,7 +154,7 @@ footer {
                 h2 {
                     font-size: 1.5rem;
                     font-weight: bold;
-                    margin: 2rem 0rem;
+                    margin: 1.5rem 0rem;
                     letter-spacing: 2px;
                 }
             }

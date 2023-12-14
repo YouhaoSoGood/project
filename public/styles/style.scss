@@ -85,10 +85,8 @@ video {
 	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;
-	font-family: 'Noto Sans TC',
-		sans-serif;
-	font-family: 'Roboto',
-		sans-serif;
+	font-family: "Noto Sans TC", sans-serif;
+	font-family: "Roboto", sans-serif;
 }
 
 /* HTML5 display-role reset for older browsers */
@@ -142,25 +140,24 @@ $color5: #c05640;
 
 .topmost-layer {
 	position: fixed;
-	right: 0;
-	bottom: 0;
+	right: 0.5rem;
+	bottom: 0.5rem;
 
 	a {
 		text-decoration: none;
 
 		div {
-			width: 80px;
-			height: 80px;
-			border-radius: 50%;
-			background-color: antiquewhite;
+			width: 2rem;
+			height: 2rem;
+			border-radius: 0.3rem;
+			background-color: rgba($color: #ffffff, $alpha: 0.8);
 			display: flex;
 			justify-content: center;
 			align-items: center;
 			flex-direction: column;
 
-
-			font-family: 'Indie Flower', cursive;
-			font-family: 'Noto Sans TC', sans-serif;
+			font-family: "Indie Flower", cursive;
+			font-family: "Noto Sans TC", sans-serif;
 
 			img {
 				width: 25px;
@@ -168,6 +165,16 @@ $color5: #c05640;
 			}
 		}
 	}
+}
+
+.background-layer {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(255, 255, 255, 0.1);
+	top: 0;
+	left: 0;
+	z-index: -1;
 }
 
 @import "repair.scss";
