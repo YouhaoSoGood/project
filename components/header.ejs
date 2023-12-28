@@ -20,6 +20,16 @@
         <ul>
             <li><a href="/repair">申請報修</a></li>
             <li><a href="/inquire">叫修查詢</a></li>
+            <li>
+                <div class="head-right">
+                    <div class="useravatar" onclick="logout()">
+                        <img src="" alt="">
+                    </div>
+                    <div class="userdata" style="display: none;">
+                        <button>登出</button>
+                    </div>
+                </div>
+            </li>
         </ul>
     </div>
 
@@ -34,6 +44,16 @@
 
 <script>
     window.onscroll = function () { scrollFunction() };
+
+    //打API去拿google的資料
+    fetch("/user/info", {
+        method: "get",
+    }).then((response) => response.json()).then((userdata) => {
+        let useravatar = document.querySelector(".useravatar img");
+        useravatar.src = userdata.photo;
+    }).catch(e => {
+        console.log(e);
+    })
 
     function scrollFunction() {
         var header = document.querySelector('.header');

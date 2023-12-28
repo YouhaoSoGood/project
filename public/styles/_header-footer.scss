@@ -37,6 +37,32 @@
             li {
                 margin: 0rem 0.5rem;
                 border-radius: 0.5rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                .head-right {
+                    margin-left: 0.5rem;
+                    .useravatar {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        border-radius: 50%;
+                        overflow: hidden;
+                        cursor: pointer;
+                    }
+
+                    .userdata {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        width: 70px;
+                        height: 70px;
+                        background-color: white;
+                    }
+                }
 
                 a {
                     text-decoration: none;

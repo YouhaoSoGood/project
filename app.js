@@ -51,14 +51,24 @@ mongoose
     console.log(e);
   });
 
+app.get("/user/info",async (req,res)=>{
+  if (!req.session.loggedIn) {
+    //檢查登入狀況
+    res.redirect("/login");
+    return;
+  }
+  let userdata = await Login.findOne({googleID:req.user.googleID});
+  res.json(userdata);
+})
+
 app.get("/manager", async (req, res) => {
   if (!req.session.loggedIn) {
     //檢查登入狀況
     res.redirect("/login");
     return;
   }
-
   let data = await Repair.find();
+
   data.forEach((item) => {
     item.stateText = Convert.state[item.state];
     item.stateArray = Convert.state;

@@ -3,14 +3,11 @@ const GoogleStrategy = require("passport-google-oauth20");
 const User = require("../models/login");
 
 passport.serializeUser((user, done) => {
-  console.log("now");
   done(null, user._id);
 });
 
 passport.deserializeUser((_id, done) => {
-  console.log("DES");
   User.findById({ _id }).then((user) => {
-    console.log("Find");
     done(null, user);
   });
 });
@@ -23,14 +20,15 @@ passport.use(
       callbackURL: "/auth/google/redirect",
     },
     (accessToken, refreshToken, profile, done) => {
-      User.findOne({ password: profile.id }).then((foundUser) => {
+      User.findOne({ googleID: profile.id }).then((foundUser) => {
         if (foundUser) {
           console.log("使用者存在");
           done(null, foundUser);
         } else {
           new User({
             account: profile.displayName,
-            password: profile.id,
+            googleID: profile.id,
+            photo: profile.photos[0].value,
           })
             .save()
             .then((newUser) => {

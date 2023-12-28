@@ -3,11 +3,17 @@ const mongoose = require("mongoose");
 const loginSchema = new mongoose.Schema({
   account: {
     type: String,
-    // required: true,
+    required: true,
   },
   password: {
     type: String,
-    // required: true,
+  },
+  photo:{
+    type: String,
+    required:false,
+  },
+  googleID:{
+    type:String,
   },
 });
 
