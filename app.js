@@ -11,6 +11,9 @@ const dotenv = require("dotenv"); //npm install dotenv
 dotenv.config();
 const authRoute = require("./routes/auth-route");
 require("./config/passport");
+const profileRoute = require("./routes/profile-route");
+const cookieSession = require("cookie-session");
+const passport = require("passport");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -24,7 +27,16 @@ app.use(
   })
 );
 
+// app.use(
+//   cookieSession({
+//     keys: [process.env.SECRET],
+//   })
+// );
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use("/auth", authRoute);
+app.use("/profile", profileRoute);
 
 mongoose
   .connect("mongodb://127.0.0.1:27017/repair", {
@@ -38,10 +50,6 @@ mongoose
     console.log("連接失敗");
     console.log(e);
   });
-
-app.get("/auth/google/redirect",(req,res)=>{
-  console.log(req.body);
-})
 
 app.get("/manager", async (req, res) => {
   if (!req.session.loggedIn) {

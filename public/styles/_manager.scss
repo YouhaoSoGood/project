@@ -51,36 +51,205 @@
 
     .newprint {
         background-color: rgb(255, 255, 255);
-        height: 100vh;
+        min-height: 100vh;
 
-        .print-data {
+        .print-title {
             display: flex;
-            justify-content: center;
+            justify-content: space-around;
+            align-items: center;
 
-            div {
-                height: 200px;
-                border: 1px solid rgb(31, 31, 31);
+            h1 {
+                font-size: 3rem;
+                font-weight: bolder;
+            }
+
+            p {
                 display: flex;
-                flex: 1;
-
-                p {
-                    font-size: 3rem;
-                }
+                align-items: center;
+                font-size: 2rem;
             }
         }
 
-        // div {
+        .print-body {
+            border: 1px solid black;
+            min-height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+
+            .print-main {
+                .print-table01 {
+                    display: flex;
+                    border: 1px solid black;
+                    min-height: 100%;
+
+                    .userprofile {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+
+                        div {
+                            font-size: 2rem;
+                        }
+                    }
+
+
+                    .print-data {
+
+                        .data-section01 {
+                            display: flex;
+
+                            label {
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                font-size: 1.5rem;
+                                height: 100px;
+                                width: 141.5px;
+                                border: 1px solid black;
+                            }
+
+                            div {
+                                height: 100px;
+                                width: 200px;
+                                border: 1px solid black;
+                            }
+                        }
+
+                        .data-section02 {
+                            display: flex;
+
+                            label {
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                font-size: 1.5rem;
+                                height: 100px;
+                                width: 165px;
+                                border: 1px solid black;
+                            }
+
+                            div#data04 {
+                                height: 100px;
+                                width: 100%;
+                                border: 1px solid black;
+                            }
+                        }
+
+                        .data-section03 {
+                            display: flex;
+
+                            label {
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                font-size: 1.5rem;
+                                min-height: 100%;
+                                width: 165px;
+                                border: 1px solid black;
+                            }
+
+                            div#data05 {
+                                height: 250px;
+                                width: 100%;
+                                border: 1px solid black;
+                            }
+                        }
+
+
+                    }
+                }
+
+                .print-table02 {
+                    display: flex;
+                    border: 1px solid black;
+
+                    .userprofile {
+                        display: flex;
+                        align-items: center;
+
+
+                        div {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            font-size: 2rem;
+                            width: 128px;
+                        }
+                    }
+
+                    h1 {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        min-height: 100%;
+                        width: 100%;
+                        border: 1px solid black;
+                        font-size: 2rem;
+                    }
+
+                    .print-other {
+                        display: flex;
+                        flex-direction: column;
+
+                        .other {
+                            display: flex;
+                            justify-content: center;
+
+                            label {
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                font-size: 1.5rem;
+                                min-height: 100%;
+                                width: 140px;
+                                border: 1px solid black;
+                            }
+
+                            div {
+                                height: 100px;
+                                width: 374.5px;
+                                border: 1px solid black;
+                            }
+                        }
+
+                        .signature {
+                            display: flex;
+
+                            label {
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                font-size: 1.5rem;
+                                min-height: 100%;
+                                width: 140px;
+                                border: 1px solid black;
+                            }
+
+                            div {
+                                height: 100px;
+                                width: 374.5px;
+                                border: 1px solid black;
+                            }
+
+                        }
+
+
+                    }
+                }
 
 
 
+            }
 
 
-        // }
-
-        .printcontent {
-            width: 100%;
 
         }
+
+
+
     }
 
     input[name="radio-check"] {

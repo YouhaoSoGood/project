@@ -202,7 +202,8 @@ html {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #888;
+  background-color: #555;
+  padding-top: 1rem;
 }
 .repair .report-warning p,
 .repair .report-warning h1 {
@@ -667,23 +668,156 @@ html {
 }
 .wrapManager .newprint {
   background-color: rgb(255, 255, 255);
-  height: 100vh;
+  min-height: 100vh;
 }
-.wrapManager .newprint .print-data {
+.wrapManager .newprint .print-title {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.wrapManager .newprint .print-title h1 {
+  font-size: 3rem;
+  font-weight: bolder;
+}
+.wrapManager .newprint .print-title p {
+  display: flex;
+  align-items: center;
+  font-size: 2rem;
+}
+.wrapManager .newprint .print-body {
+  border: 1px solid black;
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.wrapManager .newprint .print-body .print-main .print-table01 {
+  display: flex;
+  border: 1px solid black;
+  min-height: 100%;
+}
+.wrapManager .newprint .print-body .print-main .print-table01 .userprofile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.wrapManager .newprint .print-body .print-main .print-table01 .userprofile div {
+  font-size: 2rem;
+}
+.wrapManager .newprint .print-body .print-main .print-table01 .print-data .data-section01 {
+  display: flex;
+}
+.wrapManager .newprint .print-body .print-main .print-table01 .print-data .data-section01 label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  height: 100px;
+  width: 141.5px;
+  border: 1px solid black;
+}
+.wrapManager .newprint .print-body .print-main .print-table01 .print-data .data-section01 div {
+  height: 100px;
+  width: 200px;
+  border: 1px solid black;
+}
+.wrapManager .newprint .print-body .print-main .print-table01 .print-data .data-section02 {
+  display: flex;
+}
+.wrapManager .newprint .print-body .print-main .print-table01 .print-data .data-section02 label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  height: 100px;
+  width: 165px;
+  border: 1px solid black;
+}
+.wrapManager .newprint .print-body .print-main .print-table01 .print-data .data-section02 div#data04 {
+  height: 100px;
+  width: 100%;
+  border: 1px solid black;
+}
+.wrapManager .newprint .print-body .print-main .print-table01 .print-data .data-section03 {
+  display: flex;
+}
+.wrapManager .newprint .print-body .print-main .print-table01 .print-data .data-section03 label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  min-height: 100%;
+  width: 165px;
+  border: 1px solid black;
+}
+.wrapManager .newprint .print-body .print-main .print-table01 .print-data .data-section03 div#data05 {
+  height: 250px;
+  width: 100%;
+  border: 1px solid black;
+}
+.wrapManager .newprint .print-body .print-main .print-table02 {
+  display: flex;
+  border: 1px solid black;
+}
+.wrapManager .newprint .print-body .print-main .print-table02 .userprofile {
+  display: flex;
+  align-items: center;
+}
+.wrapManager .newprint .print-body .print-main .print-table02 .userprofile div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  width: 128px;
+}
+.wrapManager .newprint .print-body .print-main .print-table02 h1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100%;
+  width: 100%;
+  border: 1px solid black;
+  font-size: 2rem;
+}
+.wrapManager .newprint .print-body .print-main .print-table02 .print-other {
+  display: flex;
+  flex-direction: column;
+}
+.wrapManager .newprint .print-body .print-main .print-table02 .print-other .other {
   display: flex;
   justify-content: center;
 }
-.wrapManager .newprint .print-data div {
-  height: 200px;
-  border: 1px solid rgb(31, 31, 31);
+.wrapManager .newprint .print-body .print-main .print-table02 .print-other .other label {
   display: flex;
-  flex: 1;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  min-height: 100%;
+  width: 140px;
+  border: 1px solid black;
 }
-.wrapManager .newprint .print-data div p {
-  font-size: 3rem;
+.wrapManager .newprint .print-body .print-main .print-table02 .print-other .other div {
+  height: 100px;
+  width: 374.5px;
+  border: 1px solid black;
 }
-.wrapManager .newprint .printcontent {
-  width: 100%;
+.wrapManager .newprint .print-body .print-main .print-table02 .print-other .signature {
+  display: flex;
+}
+.wrapManager .newprint .print-body .print-main .print-table02 .print-other .signature label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  min-height: 100%;
+  width: 140px;
+  border: 1px solid black;
+}
+.wrapManager .newprint .print-body .print-main .print-table02 .print-other .signature div {
+  height: 100px;
+  width: 374.5px;
+  border: 1px solid black;
 }
 .wrapManager input[name=radio-check] {
   display: none;
