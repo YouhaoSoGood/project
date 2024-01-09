@@ -8,12 +8,13 @@ const loginSchema = new mongoose.Schema({
   password: {
     type: String,
   },
-  photo:{
+  photo: {
     type: String,
-    required:false,
+    required: false,
   },
-  googleID:{
-    type:String,
+  googleID: {
+    type: String,
+    required: false,
   },
 });
 

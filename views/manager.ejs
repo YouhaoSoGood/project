@@ -58,12 +58,14 @@
                             </select>
                         </td>
                         <td><button onclick="del('<%= item.id %>')">刪除資料</button></td>
-
                         <td>
-                            <label for="<%= item.id %>" onclick="printshow('<%= item.id %>')">列印</label>
+                            <label for="" id="printbtn" onclick="printshow()">列印</label>
+
                         </td>
+
                     </tr>
                     <% }) %>
+
             </table>
 
             <div class="newprint">
@@ -121,13 +123,8 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
-
-
                 </div>
-
-
             </div>
     </div>
 
@@ -163,29 +160,15 @@
             });
         }
         //列印
-        function printshow(id) {
-            let content = document.querySelectorAll('.content-data');
-            for (let i = 0; i < content.length; i++) {
-                content[i].classList.remove('show');
-                console.log(content[i]);
-            }
-
-
-
-            let elemets = document.getElementById(id);
-
-            elemets.parentNode.parentNode.classList.add("show");
+        function printshow() {
+            // let content = document.querySelectorAll('.content-data');
+            // let elemets = document.getElementById(id);
+            // let printbtn = document.getElementById("printbtn");
+            let printContent = document.querySelector('.newprint');
+            // let printWindow = window.open('', '_blank');
 
             window.print();
 
-
-            //user登出
-            function logout() {
-
-
-                useravatar.addEventListener()
-
-            }
         }
 
     </script>

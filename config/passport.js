@@ -38,23 +38,5 @@ passport.use(
         }
       });
     }
-    // (accessToken, refreshToken, profile, done) => {
-    //   User.findOne({ googleID: profile.id }).then((foundUser) => {
-    //     if (foundUser) {
-    //       console.log("使用者已存在");
-    //       done(null, foundUser);
-    //     } else {
-    //       new User({
-    //         // name: profile.displayName,
-    //         googleID: profile.id,
-    //       })
-    //         .save()
-    //         .then((newUser) => {
-    //           console.log("新User已建立");
-    //           done(null, newUser);
-    //         });
-    //     }
-    //   });
-    // }
   )
 );

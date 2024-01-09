@@ -27,11 +27,6 @@ app.use(
   })
 );
 
-// app.use(
-//   cookieSession({
-//     keys: [process.env.SECRET],
-//   })
-// );
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -51,15 +46,15 @@ mongoose
     console.log(e);
   });
 
-app.get("/user/info",async (req,res)=>{
+app.get("/user/info", async (req, res) => {
   if (!req.session.loggedIn) {
     //檢查登入狀況
     res.redirect("/login");
     return;
   }
-  let userdata = await Login.findOne({googleID:req.user.googleID});
+  let userdata = await Login.findOne({ googleID: req.user.googleID });
   res.json(userdata);
-})
+});
 
 app.get("/manager", async (req, res) => {
   if (!req.session.loggedIn) {
@@ -126,7 +121,11 @@ app.get("/inquire", async (req, res) => {
 });
 
 app.get("/login", (req, res) => {
-  res.render("login.ejs");
+  if (req.session.loggedIn) {
+    res.redirect("/manager");
+  } else {
+    res.render("login.ejs");
+  }
 });
 
 app.post("/login", async (req, res) => {

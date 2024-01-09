@@ -24,8 +24,6 @@
 
         tr {
             border-bottom: 2px solid #000;
-            // display: block;
-            // width: 100%;
 
             .table-data {
                 background-color: rgba(0, 133, 88, 0.678);
@@ -239,13 +237,15 @@
 }
 
 @media print {
-    .show {
-        display: table-row;
+
+    body * {
+        visibility: hidden;
     }
 
-    tr,
-    video,
-    .data-state {
-        display: none;
+    .newprint,
+    .newprint * {
+        display: flex;
+        visibility: visible;
     }
+
 }

@@ -22,14 +22,24 @@
             <li><a href="/inquire">叫修查詢</a></li>
             <li>
                 <div class="head-right">
-                    <div class="useravatar" onclick="logout()">
+                    <div class="useravatar" onclick="unfolddata()" style="visibility: hidden;">
                         <img src="" alt="">
                     </div>
-                    <div class="userdata" style="display: none;">
-                        <button>登出</button>
-                    </div>
+
                 </div>
             </li>
+
+            <div class="personaldata" style="display: none;">
+                <span class="triangle"><i class="fa-solid fa-caret-up"></i></span>
+                <div class="btn-primary">
+                    <a href="/auth/logout">
+                        <span>
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                        </span>
+                        登出
+                    </a>
+                </div>
+            </div>
         </ul>
     </div>
 
@@ -45,16 +55,23 @@
 <script>
     window.onscroll = function () { scrollFunction() };
 
+    let boo = true;
+
     //打API去拿google的資料
     fetch("/user/info", {
         method: "get",
     }).then((response) => response.json()).then((userdata) => {
         let useravatar = document.querySelector(".useravatar img");
         useravatar.src = userdata.photo;
+
+        let avatar = document.querySelector(".useravatar");
+        avatar.style = "visibility:visible";
+
     }).catch(e => {
         console.log(e);
     })
 
+    //header滾輪下滑出現
     function scrollFunction() {
         var header = document.querySelector('.header');
 
@@ -71,5 +88,20 @@
             header.style.transition = 'top 0.3s ease';
             header.style.top = '-80%'; // 隱藏起來
         }
+    }
+
+    //點選頭像展開個人資料
+    function unfolddata() {
+        let personaldata = document.querySelector(".personaldata");
+
+
+        if (boo) {
+            personaldata.style = "display:flex";
+            boo = !boo;
+        } else {
+            personaldata.style = "display:none";
+            boo = !boo;
+        }
+
     }
 </script>
