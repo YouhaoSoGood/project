@@ -848,7 +848,7 @@ html {
 .wrap-index .background-video-index {
   height: 100vh;
   width: 100%;
-  position: fixed;
+  position: absolute;
   left: 0;
   top: 0;
   z-index: -2;
@@ -876,7 +876,7 @@ html {
 }
 .wrap-index .marquee .gradually-text {
   color: rgb(243, 235, 235);
-  font-size: 3rem;
+  font-size: 2rem;
 }
 .wrap-index .marquee .gradually-text p {
   text-align: center;
@@ -941,9 +941,6 @@ html {
   .wrap-index {
     overflow: hidden;
   }
-  .wrap-index .marquee .gradually-text {
-    font-size: 20px;
-  }
 }
 .header {
   position: fixed;
@@ -966,6 +963,7 @@ html {
 .header .logo a {
   text-decoration: none;
   color: white;
+  margin: 1rem 0rem;
 }
 .header .logo a h1 {
   margin: 0.5rem;
@@ -973,13 +971,17 @@ html {
   font-family: "Indie Flower", cursive;
   font-family: "Noto Sans TC", sans-serif;
 }
+.header .menu .menu-bars {
+  color: #ffffff;
+  visibility: hidden;
+}
 .header .menu ul {
   list-style: none;
   display: flex;
   padding: 0rem 3rem;
 }
 .header .menu ul li {
-  margin: 1rem;
+  margin: 0rem;
   border-radius: 0.5rem;
   display: flex;
   align-items: center;
@@ -987,22 +989,69 @@ html {
 }
 .header .menu ul li .head-right {
   margin-left: 0.5rem;
+  position: relative;
 }
 .header .menu ul li .head-right .useravatar {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 50px;
-  height: 50px;
+  width: 2.5rem;
+  height: 2.5rem;
   border-radius: 50%;
   overflow: hidden;
   cursor: pointer;
+}
+.header .menu ul li .head-right .personaldata {
+  position: absolute;
+  right: 50%;
+  top: 180%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 120px;
+  height: 150px;
+  background-color: rgb(214, 214, 214);
+  border-radius: 10px 0px 10px 10px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 3px 3px 3px 3px #000000;
+}
+.header .menu ul li .head-right .personaldata .triangle {
+  position: absolute;
+  top: -10%;
+  right: 0;
+  width: 0px;
+  height: 0px;
+  border-top: 15px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-right: 20px solid rgb(214, 214, 214);
+}
+.header .menu ul li .head-right .personaldata .btn-primary {
+  font-size: 1.2rem;
+  display: flex;
+}
+.header .menu ul li .head-right .personaldata .btn-primary span {
+  margin-right: 1rem;
+}
+.header .menu ul li .head-right .personaldata .btn-primary a {
+  text-decoration: none;
+  background-color: blue;
+  padding: 0.5rem;
+  border-radius: 10px;
+  white-space: nowrap;
+}
+.header .menu ul li .head-right .personaldata_show {
+  opacity: 1;
+  visibility: visible;
 }
 .header .menu ul li a {
   text-decoration: none;
   color: rgb(192, 192, 192);
   font-size: 1rem;
-  padding: 1.5rem;
+  margin: 1.5rem;
+  padding: 1rem 0.3rem;
   transition: all 0.3s ease;
   display: block;
   font-family: "Indie Flower", cursive;
@@ -1012,38 +1061,6 @@ html {
   transform: scale(1.1);
   color: white;
   box-shadow: inset 0 -2px 0 -1px #ffffff;
-}
-.header .menu ul .personaldata {
-  position: absolute;
-  right: 4rem;
-  top: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  width: 120px;
-  height: 150px;
-  background-color: rgb(214, 214, 214);
-  border-radius: 10px;
-  animation: showOn 0.8s ease;
-}
-.header .menu ul .personaldata .triangle {
-  position: absolute;
-  top: -10%;
-  right: 15%;
-  color: rgb(214, 214, 214);
-}
-.header .menu ul .personaldata .btn-primary {
-  font-size: 1.2rem;
-}
-.header .menu ul .personaldata .btn-primary span {
-  margin-right: 1rem;
-}
-.header .menu ul .personaldata .btn-primary a {
-  text-decoration: none;
-  background-color: #ffffff;
-  padding: 0.5rem;
-  border-radius: 10px;
 }
 
 .header::after {
@@ -1133,20 +1150,34 @@ footer .footer .footer-body .tc-gold {
   color: rgb(126, 17, 216);
 }
 
-@keyframes showOn {
-  from {
-    opacity: 0;
+@media screen and (max-width: 600px) {
+  .header .menu {
+    position: relative;
   }
-  to {
-    opacity: 1;
+  .header .menu ul {
+    visibility: hidden;
+    position: absolute;
+    flex-direction: column;
+    right: 0;
+    top: 200%;
+    white-space: nowrap;
+    background-color: #181515;
+    padding: 0;
+  }
+  .header .menu ul li a {
+    padding: 0;
+  }
+  .header .menu .ulshow {
+    visibility: visible;
+  }
+  .header .menu .menu-bars {
+    visibility: visible;
+    margin: 0rem 2rem;
+    cursor: pointer;
   }
 }
-@media screen and (max-width: 1100px) {
-  .header .logo img {
-    width: 20px;
-    height: 20px;
-  }
-  .header .logo a h1 {
-    font-size: 10px;
+@media screen and (max-width: 1000px) {
+  footer .footer .footer-body .footer-body-section02 h2 {
+    font-size: 15px;
   }
 }/*# sourceMappingURL=style.css.map */

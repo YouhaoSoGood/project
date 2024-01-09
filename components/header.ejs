@@ -17,30 +17,31 @@
         </a>
     </div>
     <div class="menu">
+        <span class="menu-bars" onclick="openbars()"><i class="fa-solid fa-bars"></i></span>
         <ul>
             <li><a href="/repair">申請報修</a></li>
             <li><a href="/inquire">叫修查詢</a></li>
             <li>
                 <div class="head-right">
-                    <div class="useravatar" onclick="unfolddata()" style="visibility: hidden;">
+                    <div class="useravatar" onclick="unfolddata()">
                         <img src="" alt="">
                     </div>
+                    <div class=" personaldata">
+                        <div class="triangle"></div>
 
+                        <div class="btn-primary">
+                            <a href="/auth/logout">
+                                <span>
+                                    <i class="fa-solid fa-right-from-bracket"></i>
+                                </span>
+                                登出
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </li>
-
-            <div class="personaldata" style="display: none;">
-                <span class="triangle"><i class="fa-solid fa-caret-up"></i></span>
-                <div class="btn-primary">
-                    <a href="/auth/logout">
-                        <span>
-                            <i class="fa-solid fa-right-from-bracket"></i>
-                        </span>
-                        登出
-                    </a>
-                </div>
-            </div>
         </ul>
+
     </div>
 
 </div>
@@ -64,8 +65,8 @@
         let useravatar = document.querySelector(".useravatar img");
         useravatar.src = userdata.photo;
 
-        let avatar = document.querySelector(".useravatar");
-        avatar.style = "visibility:visible";
+        // let avatar = document.querySelector(".useravatar");
+        // avatar.style = "visibility:visible";
 
     }).catch(e => {
         console.log(e);
@@ -75,7 +76,7 @@
     function scrollFunction() {
         var header = document.querySelector('.header');
 
-        if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+        if (document.body.scrollTop > 95 || document.documentElement.scrollTop > 95) {
             header.style.transform = "translateY(0)";
             header.style.boxShadow = '3px 3px 5px 1px rgb(0, 0, 0)';
             header.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
@@ -93,15 +94,13 @@
     //點選頭像展開個人資料
     function unfolddata() {
         let personaldata = document.querySelector(".personaldata");
+        personaldata.classList.toggle("personaldata_show");
 
+    }
 
-        if (boo) {
-            personaldata.style = "display:flex";
-            boo = !boo;
-        } else {
-            personaldata.style = "display:none";
-            boo = !boo;
-        }
+    function openbars() {
+        let ul = document.querySelector(".menu ul");
 
+        ul.classList.toggle("ulshow");
     }
 </script>
