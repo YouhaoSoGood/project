@@ -4,14 +4,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>searchphoto</title>
+    <link rel="stylesheet" href="/styles/style.css">
+    <title>搜尋相片</title>
 </head>
 
 <body>
-    <div class="search">
-        <input type="text" name="" id="">
-        <button>Search</button>
+    <div class="wrap-photo">
+        <div class="search">
+            <input type="text" name="" id="">
+            <button>Search</button>
+        </div>
+        <div class="images">
+
+        </div>
     </div>
+
+
+
+    <script>
+        fetch("https://api.pexels.com/v1/search?query=nature&per_page=10", {
+            method: "get",
+            headers: { "Authorization": "skskfpmWksiB3HxrLdRK8bsxj1y8ASRAoFmMtazy0RJX8HT5KTNh6XFg" }
+        }).then((response) => response.json()).then((search) => {
+            let photo = search.photos;
+            let images = document.querySelector(".images");
+
+            console.log("123" + images);
+            photo.forEach(index => {
+                let img = document.createElement("img");
+                img.src = index.src.original;
+                img.loading = "lazy";
+                images.appendChild(img);
+
+                console.log(img);
+            });
+
+
+
+        }).catch(e => {
+            console.log(e);
+        })
+    </script>
 </body>
 
 </html>

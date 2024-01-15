@@ -1,5 +1,3 @@
-// const express = require("express").Router();
-// const app = express();
 const router = require("express").Router();
 
 const auth = "skskfpmWksiB3HxrLdRK8bsxj1y8ASRAoFmMtazy0RJX8HT5KTNh6XFg";

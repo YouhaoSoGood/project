@@ -1,3 +1,4 @@
 node_modules 
 public/img
+.env
 #上傳git時不要上傳的檔案

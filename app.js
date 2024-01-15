@@ -21,7 +21,8 @@ const pexelsapi = require("./config/pexelsapi");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.set("view engine", "ejs");
-app.use(express.static("public"));
+// app.use(express.static("public"));
+app.use(express.static(__dirname + '/public'));
 app.use(
   session({
     secret: "mykey",
@@ -36,7 +37,7 @@ app.use(passport.session());
 app.use("/auth", authRoute);
 app.use("/profile", profileRoute);
 
-app.use("/photo", pexelsapi);
+app.use("/pexels", pexelsapi);
 
 mongoose
   .connect("mongodb://127.0.0.1:27017/repair", {
@@ -50,6 +51,10 @@ mongoose
     console.log("連接失敗");
     console.log(e);
   });
+
+// app.get("/search/photo",(req,res)=>{
+//   res.render("searchphoto");
+// })
 
 app.get("/user/info", async (req, res) => {
   if (!req.session.loggedIn) {

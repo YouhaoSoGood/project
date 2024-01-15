@@ -237,7 +237,6 @@
 }
 
 @media print {
-
     body * {
         visibility: hidden;
     }
@@ -247,5 +246,4 @@
         display: flex;
         visibility: visible;
     }
-
 }
