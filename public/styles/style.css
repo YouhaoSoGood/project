@@ -897,7 +897,7 @@ html {
   background-color: rgb(109, 95, 95);
 }
 .wrap-index main .container01 .container-text {
-  width: 30%;
+  width: 50%;
   word-wrap: break-word;
   font-weight: bold;
   display: flex;
@@ -915,7 +915,7 @@ html {
 .wrap-index main .container01 .container-text p {
   letter-spacing: 5px;
   color: white;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   font-family: "Indie Flower", cursive;
 }
 .wrap-index main .container01 .container-text p a {
@@ -937,9 +937,13 @@ html {
     opacity: 1;
   }
 }
-@media screen and (max-width: 1100px) {
-  .wrap-index {
-    overflow: hidden;
+@media screen and (max-width: 1000px) {
+  .wrap-index main .container01 {
+    flex-direction: column;
+  }
+  .wrap-index main .container01 .container-text {
+    margin-top: 2rem;
+    width: 100%;
   }
 }
 .header {
@@ -1000,6 +1004,12 @@ html {
   border-radius: 50%;
   overflow: hidden;
   cursor: pointer;
+  visibility: hidden;
+  opacity: 0;
+}
+.header .menu ul li .head-right .useravatar_show {
+  visibility: visible;
+  opacity: 1;
 }
 .header .menu ul li .head-right .personaldata {
   position: absolute;
@@ -1150,12 +1160,11 @@ footer .footer .footer-body .tc-gold {
   color: rgb(126, 17, 216);
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 750px) {
   .header .menu {
     position: relative;
   }
   .header .menu ul {
-    visibility: hidden;
     position: absolute;
     flex-direction: column;
     right: 0;
@@ -1163,11 +1172,26 @@ footer .footer .footer-body .tc-gold {
     white-space: nowrap;
     background-color: #181515;
     padding: 0;
+    border-radius: 10px;
+    border: 1px solid #ffffff;
+    visibility: hidden;
+  }
+  .header .menu ul li {
+    padding: 0.5rem;
   }
   .header .menu ul li a {
     padding: 0;
   }
+  .header .menu ul li .head-right .useravatar {
+    opacity: 0;
+    visibility: hidden;
+  }
+  .header .menu ul li .head-right .useravatar_show2 {
+    opacity: 1;
+    visibility: visible;
+  }
   .header .menu .ulshow {
+    opacity: 1;
     visibility: visible;
   }
   .header .menu .menu-bars {
@@ -1177,7 +1201,10 @@ footer .footer .footer-body .tc-gold {
   }
 }
 @media screen and (max-width: 1000px) {
-  footer .footer .footer-body .footer-body-section02 h2 {
-    font-size: 15px;
+  footer .footer .footer-body {
+    flex-direction: column;
+  }
+  footer .footer .footer-body .footer-body-section02 {
+    width: 100%;
   }
 }/*# sourceMappingURL=style.css.map */

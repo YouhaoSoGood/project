@@ -20,6 +20,7 @@
             text-decoration: none;
             color: white;
             margin: 1rem 0rem;
+
             h1 {
                 margin: 0.5rem;
                 font-size: 1.5rem;
@@ -34,6 +35,7 @@
             color: #ffffff;
             visibility: hidden;
         }
+
         ul {
             list-style: none;
             display: flex;
@@ -59,7 +61,18 @@
                         border-radius: 50%;
                         overflow: hidden;
                         cursor: pointer;
+                        visibility: hidden;
+                        opacity: 0;
                     }
+
+                    .useravatar_show {
+                        visibility: visible;
+                        opacity: 1;
+                    }
+
+                    // .useravatar_hidden {
+                    //     visibility: hidden;
+                    // }
 
                     .personaldata {
                         position: absolute;
@@ -93,6 +106,7 @@
                         .btn-primary {
                             font-size: 1.2rem;
                             display: flex;
+
                             span {
                                 margin-right: 1rem;
                             }
@@ -243,12 +257,12 @@ footer {
     }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 750px) {
     .header {
         .menu {
             position: relative;
+
             ul {
-                visibility: hidden;
                 position: absolute;
                 flex-direction: column;
                 right: 0;
@@ -256,16 +270,37 @@ footer {
                 white-space: nowrap;
                 background-color: #181515;
                 padding: 0;
+                border-radius: 10px;
+                border: 1px solid #ffffff;
+                visibility: hidden;
 
                 li {
+                    padding: 0.5rem;
+
                     a {
                         padding: 0;
                     }
+
+                    .head-right {
+                        .useravatar {
+                            opacity: 0;
+                            visibility: hidden;
+                        }
+
+                        .useravatar_show2 {
+                            opacity: 1;
+                            visibility: visible;
+                        }
+
+                    }
                 }
             }
+
             .ulshow {
+                opacity: 1;
                 visibility: visible;
             }
+
             .menu-bars {
                 visibility: visible;
                 margin: 0rem 2rem;
@@ -289,10 +324,10 @@ footer {
     footer {
         .footer {
             .footer-body {
+                flex-direction: column;
+
                 .footer-body-section02 {
-                    h2 {
-                        font-size: 15px;
-                    }
+                    width: 100%;
                 }
             }
         }

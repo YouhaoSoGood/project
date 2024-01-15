@@ -71,7 +71,7 @@ html {
             background-color: rgb(109, 95, 95);
 
             .container-text {
-                width: 30%;
+                width: 50%;
                 word-wrap: break-word; //自動換行
                 font-weight: bold;
                 display: flex;
@@ -90,7 +90,7 @@ html {
                 p {
                     letter-spacing: 5px;
                     color: white;
-                    font-size: 1.2rem;
+                    font-size: 1.5rem;
                     font-family: "Indie Flower", cursive;
 
                     a {
@@ -121,8 +121,17 @@ html {
     }
 }
 
-@media screen and (max-width: 1100px) {
+@media screen and (max-width: 1000px) {
     .wrap-index {
-        overflow: hidden;
+        main {
+            .container01 {
+                flex-direction: column;
+
+                .container-text {
+                    margin-top: 2rem;
+                    width: 100%;
+                }
+            }
+        }
     }
 }

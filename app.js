@@ -15,6 +15,9 @@ const profileRoute = require("./routes/profile-route");
 const cookieSession = require("cookie-session");
 const passport = require("passport");
 
+const pexelsapi = require("./config/pexelsapi");
+// require("./config/pexelsapi");
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.set("view engine", "ejs");
@@ -32,6 +35,8 @@ app.use(passport.session());
 
 app.use("/auth", authRoute);
 app.use("/profile", profileRoute);
+
+app.use("/photo", pexelsapi);
 
 mongoose
   .connect("mongodb://127.0.0.1:27017/repair", {

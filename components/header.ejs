@@ -19,6 +19,7 @@
     <div class="menu">
         <span class="menu-bars" onclick="openbars()"><i class="fa-solid fa-bars"></i></span>
         <ul>
+            <li><a href="/search/photo">搜尋相片</a></li>
             <li><a href="/repair">申請報修</a></li>
             <li><a href="/inquire">叫修查詢</a></li>
             <li>
@@ -55,18 +56,23 @@
 
 <script>
     window.onscroll = function () { scrollFunction() };
-
     let boo = true;
 
     //打API去拿google的資料
     fetch("/user/info", {
         method: "get",
     }).then((response) => response.json()).then((userdata) => {
-        let useravatar = document.querySelector(".useravatar img");
-        useravatar.src = userdata.photo;
+        let useravatarimg = document.querySelector(".useravatar img");
+        useravatarimg.src = userdata.photo;
 
-        // let avatar = document.querySelector(".useravatar");
-        // avatar.style = "visibility:visible";
+        let avatar = document.querySelector(".useravatar");
+
+        if (userdata != null) {
+            avatar.classList.add("useravatar_show");
+        } else {
+            avatar.remove();
+        }
+
 
     }).catch(e => {
         console.log(e);
@@ -76,7 +82,7 @@
     function scrollFunction() {
         var header = document.querySelector('.header');
 
-        if (document.body.scrollTop > 95 || document.documentElement.scrollTop > 95) {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
             header.style.transform = "translateY(0)";
             header.style.boxShadow = '3px 3px 5px 1px rgb(0, 0, 0)';
             header.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
@@ -91,6 +97,7 @@
         }
     }
 
+
     //點選頭像展開個人資料
     function unfolddata() {
         let personaldata = document.querySelector(".personaldata");
@@ -100,7 +107,10 @@
 
     function openbars() {
         let ul = document.querySelector(".menu ul");
-
         ul.classList.toggle("ulshow");
+
+        let avatar = document.querySelector(".useravatar");
+        avatar.classList.toggle("useravatar_show2");
+
     }
 </script>
