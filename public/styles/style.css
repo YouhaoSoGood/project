@@ -137,6 +137,7 @@ table {
   position: fixed;
   right: 0.5rem;
   bottom: 0.5rem;
+  visibility: hidden;
 }
 .topmost-layer a {
   text-decoration: none;
@@ -156,6 +157,10 @@ table {
 .topmost-layer a div img {
   width: 25px;
   height: 25px;
+}
+
+.topmost-layer_show {
+  visibility: visible;
 }
 
 .background-layer {
@@ -209,6 +214,7 @@ html {
 .repair .report-warning h1 {
   color: rgb(250, 234, 205);
   font-size: 25px;
+  margin: 0rem 2rem;
 }
 .repair .report-warning p a,
 .repair .report-warning h1 a {
@@ -278,6 +284,11 @@ html {
   border: 2px solid rgb(93, 93, 255);
   color: rgb(2, 2, 2);
   text-align: center;
+  font-size: 1.1rem;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .repair .repair-body .data-button button:hover {
   background-color: #ff7f7f;
@@ -293,7 +304,7 @@ html {
 }
 .repair .repair-body .section .radio-quess h1 {
   color: rgb(255, 255, 255);
-  font-size: 3rem;
+  font-size: 2.5rem;
   margin: 1rem;
   font-weight: bolder;
 }
@@ -335,7 +346,6 @@ html {
   cursor: pointer;
   border: 2px solid rgb(93, 93, 255);
   background-color: bisque;
-  width: 100%;
 }
 .repair .repair-body .section .radio-quess .nextbutton:hover {
   background-color: #ff7f7f;
@@ -359,6 +369,8 @@ html {
 }
 .repair .repair-body #section02 .repair-main-input .input-row label {
   font-size: 3rem;
+  margin: 0rem 1rem;
+  white-space: nowrap;
 }
 .repair .repair-body #section02 .repair-main-input .input-row input {
   width: 300px;
@@ -441,6 +453,17 @@ html {
   cursor: pointer;
 }
 
+@media screen and (max-width: 750px) {
+  .repair .repair-body .slide {
+    display: none;
+  }
+  .repair .repair-body #section02 .repair-main-input .input-row label {
+    font-size: 1.2rem;
+  }
+  .repair .report-warning p {
+    font-size: 1.2rem;
+  }
+}
 .wrap-inquire {
   position: relative;
 }
@@ -1010,12 +1033,6 @@ html {
   border-radius: 50%;
   overflow: hidden;
   cursor: pointer;
-  visibility: hidden;
-  opacity: 0;
-}
-.header .menu ul li .head-right .useravatar_show {
-  visibility: visible;
-  opacity: 1;
 }
 .header .menu ul li .head-right .personaldata {
   position: absolute;
@@ -1155,9 +1172,8 @@ footer .footer .footer-body .footer-body-section02 {
 }
 footer .footer .footer-body .footer-body-section02 h2 {
   font-size: 1.5rem;
-  font-weight: bold;
   margin: 1.5rem 0rem;
-  letter-spacing: 2px;
+  line-height: 1.2;
 }
 footer .footer .footer-body .tc-gold {
   margin-top: 1rem;
@@ -1186,14 +1202,6 @@ footer .footer .footer-body .tc-gold {
   .header .menu ul li a {
     padding: 0.5rem 0rem;
   }
-  .header .menu ul li .head-right .useravatar {
-    opacity: 0;
-    visibility: hidden;
-  }
-  .header .menu ul li .head-right .useravatar_show2 {
-    opacity: 1;
-    visibility: visible;
-  }
   .header .menu .ulshow {
     opacity: 1;
     visibility: visible;
@@ -1218,7 +1226,7 @@ footer .footer .footer-body .tc-gold {
     width: 100%;
   }
   footer .footer .footer-body .footer-body-section02 h2 {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
 }
 .wrap-photo .images {

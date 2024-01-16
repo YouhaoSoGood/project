@@ -41,7 +41,7 @@ html {
 		h1 {
 			color: rgb(250, 234, 205);
 			font-size: 25px;
-
+			margin: 0rem 2rem;
 			a {
 				text-decoration: none;
 				color: rgb(212, 73, 55);
@@ -67,7 +67,6 @@ html {
 			margin: 0rem 1.5rem;
 
 			p {
-
 				input,
 				textarea {
 					border-radius: 15px;
@@ -117,6 +116,11 @@ html {
 				border: 2px solid rgb(93, 93, 255);
 				color: rgb(2, 2, 2);
 				text-align: center;
+				font-size: 1.1rem;
+				white-space: nowrap;
+				display: flex;
+				align-items: center;
+				justify-content: center;
 			}
 
 			button:hover {
@@ -135,9 +139,13 @@ html {
 			min-width: 100%;
 
 			.radio-quess {
+				// display: flex;
+				// justify-content: center;
+				// align-items: center;
+				// flex-direction: column;
 				h1 {
 					color: rgb(255, 255, 255);
-					font-size: 3rem;
+					font-size: 2.5rem;
 					margin: 1rem;
 					font-weight: bolder;
 				}
@@ -185,7 +193,7 @@ html {
 					cursor: pointer;
 					border: 2px solid rgb(93, 93, 255);
 					background-color: bisque;
-					width: 100%;
+					// width: 50%;
 				}
 
 				.nextbutton:hover {
@@ -198,7 +206,6 @@ html {
 			display: flex;
 			justify-content: center;
 			align-items: center;
-
 		}
 
 		#section02 {
@@ -216,6 +223,8 @@ html {
 
 					label {
 						font-size: 3rem;
+						margin: 0rem 1rem;
+						white-space: nowrap;
 					}
 
 					input {
@@ -264,7 +273,7 @@ html {
 				opacity: 0;
 			}
 
-			input:checked~.radio-input::after {
+			input:checked ~ .radio-input::after {
 				opacity: 1;
 			}
 		}
@@ -310,6 +319,31 @@ html {
 				color: black;
 				text-decoration: none;
 				cursor: pointer;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 750px) {
+	.repair {
+		.repair-body {
+			.slide {
+				display: none;
+			}
+			#section02 {
+				.repair-main-input {
+					.input-row {
+						label {
+							font-size: 1.2rem;
+						}
+					}
+				}
+			}
+		}
+
+		.report-warning {
+			p {
+				font-size: 1.2rem;
 			}
 		}
 	}

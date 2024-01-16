@@ -142,7 +142,7 @@ $color5: #c05640;
 	position: fixed;
 	right: 0.5rem;
 	bottom: 0.5rem;
-
+	visibility: hidden;
 	a {
 		text-decoration: none;
 
@@ -165,6 +165,10 @@ $color5: #c05640;
 			}
 		}
 	}
+}
+
+.topmost-layer_show {
+	visibility: visible;
 }
 
 .background-layer {

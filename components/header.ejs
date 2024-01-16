@@ -56,30 +56,30 @@
 
 <script>
     window.onscroll = function () { scrollFunction() };
-
+    let avatar = document.querySelector(".useravatar");
     //打API去拿google的資料
     fetch("/user/info", {
         method: "get",
-    }).then((response) => response.json()).then((userdata) => {
-        let useravatarimg = document.querySelector(".useravatar img");
-        useravatarimg.src = userdata.photo;
+    }).then(async (response) => {
 
-        let avatar = document.querySelector(".useravatar");
-
-        if (userdata != null) {
-            avatar.classList.add("useravatar_show");
+        if (response.status != "401") {
+            const userdata = await response.json();
+            let useravatarimg = document.querySelector(".useravatar img");
+            useravatarimg.src = userdata.photo;
+            console.log(userdata.googleID);
         } else {
-            avatar.remove();
+            let headright = document.querySelector(".head-right");
+            headright.remove(avatar);
         }
 
-
     }).catch(e => {
-        console.log(e);
+        console.log("錯誤訊息 " + e);
     })
 
     //header滾輪下滑出現
     function scrollFunction() {
-        var header = document.querySelector('.header');
+        let header = document.querySelector('.header');
+        let topmostlayer = document.querySelector(".topmost-layer");
 
         if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
             header.style.transform = "translateY(0)";
@@ -87,13 +87,21 @@
             header.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
             header.style.transition = 'top 0.3 ease';
             header.style.top = '0';
-
         } else {
             header.style.boxShadow = 'none';
             header.style.backgroundColor = 'transparent';
             header.style.transition = 'top 0.3s ease';
             header.style.top = '-80%'; // 隱藏起來
+
         }
+
+        if (document.body.scrollTop > 0 || document.documentElement.scrollTop > 0) {
+            topmostlayer.classList.add("topmost-layer_show");
+        } else {
+            topmostlayer.classList.remove("topmost-layer_show");
+        }
+
+
     }
 
 
@@ -107,9 +115,6 @@
     function openbars() {
         let ul = document.querySelector(".menu ul");
         ul.classList.toggle("ulshow");
-
-        let avatar = document.querySelector(".useravatar");
-        avatar.classList.toggle("useravatar_show2");
 
     }
 </script>

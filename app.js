@@ -52,18 +52,18 @@ mongoose
     console.log(e);
   });
 
-// app.get("/search/photo",(req,res)=>{
-//   res.render("searchphoto");
-// })
 
 app.get("/user/info", async (req, res) => {
   if (!req.session.loggedIn) {
     //檢查登入狀況
-    res.redirect("/login");
+    res.status(401).send("0"); //未登入
     return;
+  }else{
+    console.log(req.user);
+    let userdata = await Login.findOne({ googleID: req.user.googleID });
+    res.json(userdata);
   }
-  let userdata = await Login.findOne({ googleID: req.user.googleID });
-  res.json(userdata);
+  
 });
 
 app.get("/manager", async (req, res) => {
